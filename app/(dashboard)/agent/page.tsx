@@ -1,41 +1,42 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Bot, Sparkles } from 'lucide-react';
+import { getAgentConversations, getConversationDetail } from '@/lib/data/agent';
+import { AgentChatInterface } from './agent-chat-interface';
 
-export default function AgentPage() {
+export default async function AgentPage(props: {
+  searchParams: Promise<{ conversationId?: string; q?: string }>;
+}) {
+  const searchParams = await props.searchParams;
+  const conversationId = searchParams.conversationId;
+  const initialQuery = searchParams.q;
+
+  const conversations = await getAgentConversations();
+
+  let activeConversation = null;
+  let initialMessages: any[] = [];
+
+  if (conversationId) {
+    const detail = await getConversationDetail(conversationId);
+    if (detail) {
+      activeConversation = detail.conversation;
+      initialMessages = detail.messages;
+    }
+  } else if (conversations.length > 0) {
+    // Default to most recent conversation if none specified in query string
+    const latest = conversations[0];
+    const detail = await getConversationDetail(latest.id);
+    if (detail) {
+      activeConversation = detail.conversation;
+      initialMessages = detail.messages;
+    }
+  }
+
   return (
-    <div className="space-y-6">
-      <div>
-        <div className="flex items-center space-x-3">
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">
-            TenderOS AI Agent
-          </h1>
-          <Badge variant="outline" className="border-violet-500/30 text-violet-400 bg-violet-500/10">
-            Vertex AI Orchestrator
-          </Badge>
-        </div>
-        <p className="text-sm text-zinc-400">
-          Autonomous copilot for tender analysis, requirements cross-referencing, and proposal drafting.
-        </p>
-      </div>
-
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader>
-          <div className="flex items-center space-x-2">
-            <Bot className="h-5 w-5 text-violet-400" />
-            <CardTitle className="text-base text-zinc-200">Interactive Chat & Task Execution</CardTitle>
-          </div>
-          <CardDescription className="text-zinc-500">
-            Routed between Claude 3.5 Sonnet (judgment-heavy) and Gemini Flash (cheap operations) on Vertex AI.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex h-48 flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 text-center text-xs text-zinc-500 space-y-2">
-            <Sparkles className="h-6 w-6 text-violet-400/60" />
-            <span>Agent conversation interface and tool execution will connect here.</span>
-          </div>
-        </CardContent>
-      </Card>
+    <div className="space-y-4">
+      <AgentChatInterface
+        conversations={conversations}
+        activeConversation={activeConversation}
+        initialMessages={initialMessages}
+        initialQuery={initialQuery}
+      />
     </div>
   );
 }

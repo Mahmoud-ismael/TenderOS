@@ -1,34 +1,37 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Files } from 'lucide-react';
+import {
+  getActiveApplications,
+  getApplicationDetail,
+  getDocumentTemplates,
+  verifyComplianceBundleReadiness,
+} from '@/lib/data/documents';
+import { DocumentWorkspace } from './document-workspace';
 
-export default function DocumentsPage() {
+export default async function DocumentsPage(props: {
+  searchParams: Promise<{ applicationId?: string }>;
+}) {
+  const searchParams = await props.searchParams;
+  const applicationId = searchParams.applicationId;
+
+  const [activeApplications, templates, complianceReadiness] = await Promise.all([
+    getActiveApplications(),
+    getDocumentTemplates(),
+    verifyComplianceBundleReadiness(),
+  ]);
+
+  let currentApplication = null;
+  if (applicationId) {
+    currentApplication = await getApplicationDetail(applicationId);
+  } else if (activeApplications.length === 1) {
+    // If only one application exists, auto-select it for convenience
+    currentApplication = await getApplicationDetail(activeApplications[0].application.id);
+  }
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">
-          Compliance & Generated Documents
-        </h1>
-        <p className="text-sm text-zinc-400">
-          Repository of statutory compliance certificates, templates, and synthesized tender bundles.
-        </p>
-      </div>
-
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader>
-          <div className="flex items-center space-x-2">
-            <Files className="h-5 w-5 text-zinc-400" />
-            <CardTitle className="text-base text-zinc-200">Document Vault</CardTitle>
-          </div>
-          <CardDescription className="text-zinc-500">
-            Tax compliance, AGPO certificate, CR12, permits, and proposal documents.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex h-48 items-center justify-center rounded-lg border border-dashed border-zinc-800 text-xs text-zinc-500">
-            Uploaded compliance documents and generated files will appear here.
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <DocumentWorkspace
+      activeApplications={activeApplications}
+      currentApplication={currentApplication}
+      templates={templates}
+      complianceReadiness={complianceReadiness}
+    />
   );
 }

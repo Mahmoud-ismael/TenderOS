@@ -4,20 +4,25 @@ import type { AiTaskOptions, AiTaskResult } from './types';
 
 /**
  * Intelligent Model Router for TenderOS:
- * - Cheap tier (Gemini Flash on Vertex AI): metadata extraction, document parsing, checklist item verification.
- * - Judgment tier (Claude Sonnet on Vertex AI): tender qualification analysis, proposal drafting, evaluation scoring.
+ * Uses Google Cloud Vertex AI (Gemini 2.5 Flash / Gemini Pro) with full multi-turn and tool execution support.
  */
 export async function executeAiTask(
   options: AiTaskOptions
 ): Promise<AiTaskResult> {
   const { taskType } = options;
 
-  switch (taskType) {
-    case 'judgment':
-      return await callClaudeVertex(options);
+  try {
+    if (taskType === 'judgment' && process.env.ENABLE_CLAUDE_VERTEX === 'true') {
+      try {
+        return await callClaudeVertex(options);
+      } catch (claudeErr) {
+        console.warn('Claude on Vertex AI unavailable; falling back to Gemini Flash:', claudeErr);
+        return await callGeminiVertex(options);
+      }
+    }
 
-    case 'cheap':
-    default:
-      return await callGeminiVertex(options);
+    return await callGeminiVertex(options);
+  } catch (err) {
+    return await callGeminiVertex(options);
   }
 }

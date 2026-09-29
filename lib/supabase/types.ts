@@ -529,6 +529,123 @@ export interface Database {
           },
         ];
       };
+      scrape_logs: {
+        Row: {
+          id: string;
+          source: string;
+          status: string;
+          tenders_found: number;
+          tenders_imported: number;
+          error_message: string | null;
+          stack_trace: string | null;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          source: string;
+          status: string;
+          tenders_found?: number;
+          tenders_imported?: number;
+          error_message?: string | null;
+          stack_trace?: string | null;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          source?: string;
+          status?: string;
+          tenders_found?: number;
+          tenders_imported?: number;
+          error_message?: string | null;
+          stack_trace?: string | null;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      notifications: {
+        Row: {
+          id: string;
+          type: string;
+          title: string;
+          message: string;
+          severity: string;
+          entity_type: string | null;
+          entity_id: string | null;
+          link: string | null;
+          is_read: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          type: string;
+          title: string;
+          message: string;
+          severity?: string;
+          entity_type?: string | null;
+          entity_id?: string | null;
+          link?: string | null;
+          is_read?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          type?: string;
+          title?: string;
+          message?: string;
+          severity?: string;
+          entity_type?: string | null;
+          entity_id?: string | null;
+          link?: string | null;
+          is_read?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      system_settings: {
+        Row: {
+          id: number;
+          email_notifications_enabled: boolean;
+          in_app_notifications_enabled: boolean;
+          notification_email: string | null;
+          deadline_thresholds_days: Json;
+          compliance_thresholds_days: Json;
+          auto_qualify_discovered: boolean;
+          min_score_to_notify: number;
+          resend_api_key: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: number;
+          email_notifications_enabled?: boolean;
+          in_app_notifications_enabled?: boolean;
+          notification_email?: string | null;
+          deadline_thresholds_days?: Json;
+          compliance_thresholds_days?: Json;
+          auto_qualify_discovered?: boolean;
+          min_score_to_notify?: number;
+          resend_api_key?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: number;
+          email_notifications_enabled?: boolean;
+          in_app_notifications_enabled?: boolean;
+          notification_email?: string | null;
+          deadline_thresholds_days?: Json;
+          compliance_thresholds_days?: Json;
+          auto_qualify_discovered?: boolean;
+          min_score_to_notify?: number;
+          resend_api_key?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

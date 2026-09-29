@@ -6,8 +6,8 @@ export interface AiMessage {
 }
 
 export interface AiTaskOptions {
-  taskType: TaskComplexity;
-  prompt: string;
+  taskType?: TaskComplexity;
+  prompt?: string;
   systemPrompt?: string;
   messages?: AiMessage[];
   temperature?: number;
@@ -23,4 +23,15 @@ export interface AiTaskResult {
     inputTokens?: number;
     outputTokens?: number;
   };
+}
+
+export interface ExtractedDocumentMetadata {
+  docType?: string | null;
+  certificateNumber?: string | null;
+  issueDate?: string | null; // YYYY-MM-DD
+  expiryDate?: string | null; // YYYY-MM-DD
+  issuingAuthority?: string | null;
+  entityName?: string | null;
+  notes?: string | null;
+  confidence: 'high' | 'medium' | 'low';
 }
