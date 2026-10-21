@@ -80,21 +80,21 @@ export default async function ApplicationDetailPage(props: {
             </Badge>
           </div>
 
-          <h1 className="text-xl font-bold tracking-tight text-zinc-100 leading-snug">
+          <h1 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
             {tender.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-600 dark:text-zinc-400">
             <span className="flex items-center gap-1">
-              <Building2 className="h-3.5 w-3.5 text-zinc-500" />
+              <Building2 className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" />
               {tender.procuring_entity}
             </span>
             <span className="flex items-center gap-1">
-              <Calendar className="h-3.5 w-3.5 text-zinc-500" />
+              <Calendar className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" />
               Submission Deadline: {new Date(tender.submission_deadline).toLocaleString()}
             </span>
             {tender.estimated_value && (
-              <span className="text-zinc-300 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                 Estimated Value: KES {Number(tender.estimated_value).toLocaleString()}
               </span>
             )}

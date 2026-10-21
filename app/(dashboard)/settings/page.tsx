@@ -8,11 +8,11 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
-          <Settings className="h-6 w-6 text-zinc-400" />
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <Settings className="h-6 w-6 text-purple-600 dark:text-purple-400" />
           System Settings & Notification Engine
         </h1>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           Configure notification channels, deadline alert timing thresholds, and automatic chained discovery-to-qualification pipelines.
         </p>
       </div>

@@ -73,19 +73,19 @@ export function ManualAddModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm animate-in fade-in">
-      <Card className="w-full max-w-xl border-zinc-700 bg-zinc-900 shadow-2xl">
-        <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-zinc-800">
+      <Card className="w-full max-w-xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-2xl">
+        <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div>
-            <CardTitle className="text-base font-semibold text-zinc-100 flex items-center gap-2">
-              <PlusCircle className="h-5 w-5 text-zinc-300" /> Manually Add Tender
+            <CardTitle className="text-base font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+              <PlusCircle className="h-5 w-5 text-purple-600 dark:text-purple-400" /> Manually Add Tender
             </CardTitle>
-            <CardDescription className="text-xs text-zinc-400 mt-0.5">
+            <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Enter tender particulars or paste official government notice details.
             </CardDescription>
           </div>
           <button
             onClick={onClose}
-            className="text-zinc-500 hover:text-zinc-300 transition-colors"
+            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -94,52 +94,52 @@ export function ManualAddModal({
         <CardContent className="pt-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             {errorMsg && (
-              <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-2.5 text-xs text-red-400">
+              <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-2.5 text-xs text-red-600 dark:text-red-400">
                 {errorMsg}
               </div>
             )}
 
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-zinc-300">Tender Title *</label>
+              <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Tender Title *</label>
               <Input
                 required
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 placeholder="e.g. Supply and Implementation of Enterprise ERP & Portal System"
-                className="border-zinc-800 bg-zinc-950 text-xs"
+                className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-xs shadow-xs"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">Procuring Entity / Buyer *</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Procuring Entity / Buyer *</label>
                 <Input
                   required
                   value={formData.procuring_entity}
                   onChange={(e) => setFormData({ ...formData, procuring_entity: e.target.value })}
                   placeholder="e.g. Kenya Revenue Authority (KRA)"
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-xs shadow-xs"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">Tender / Ref Number</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Tender / Ref Number</label>
                 <Input
                   value={formData.external_reference}
                   onChange={(e) => setFormData({ ...formData, external_reference: e.target.value })}
                   placeholder="e.g. KRA/HQS/NCB-042/2026"
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-xs shadow-xs"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">Procurement Category</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Procurement Category</label>
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="flex h-9 w-full rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1 text-xs text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-700"
+                  className="flex h-9 w-full rounded-md border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-3 py-1 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-purple-600 shadow-xs"
                 >
                   <option value="ICT Services & Software Engineering">ICT Services & Software Engineering</option>
                   <option value="Web & Mobile App Development">Web & Mobile App Development</option>
@@ -151,61 +151,61 @@ export function ManualAddModal({
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">Submission Deadline *</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Submission Deadline *</label>
                 <Input
                   type="datetime-local"
                   required
                   value={formData.submission_deadline}
                   onChange={(e) => setFormData({ ...formData, submission_deadline: e.target.value })}
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-xs shadow-xs"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">Estimated Budget (KES)</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Estimated Budget (KES)</label>
                 <Input
                   type="number"
                   value={formData.estimated_value}
                   onChange={(e) => setFormData({ ...formData, estimated_value: e.target.value })}
                   placeholder="e.g. 5000000"
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-xs shadow-xs"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300 flex items-center gap-1">
-                  <Link2 className="h-3.5 w-3.5 text-zinc-400" /> Tender Document / Notice URL
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-1">
+                  <Link2 className="h-3.5 w-3.5 text-zinc-500" /> Tender Document / Notice URL
                 </label>
                 <Input
                   type="url"
                   value={formData.tender_document_url}
                   onChange={(e) => setFormData({ ...formData, tender_document_url: e.target.value })}
                   placeholder="https://tenders.go.ke/..."
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 text-xs shadow-xs"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-zinc-300">Description / Scope Summary</label>
+              <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Description / Scope Summary</label>
               <textarea
                 rows={2}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Brief summary of requirements, eligibility notes, or site visit particulars..."
-                className="flex w-full rounded-md border border-zinc-800 bg-zinc-950 p-2 text-xs text-zinc-200 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-700"
+                className="flex w-full rounded-md border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-2 text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-purple-600 shadow-xs"
               />
             </div>
 
-            <div className="flex items-center justify-end space-x-2 pt-3 border-t border-zinc-800">
+            <div className="flex items-center justify-end space-x-2 pt-3 border-t border-zinc-100 dark:border-zinc-800">
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={onClose}
-                className="border-zinc-800 text-zinc-400"
+                className="border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs"
               >
                 Cancel
               </Button>
@@ -213,7 +213,7 @@ export function ManualAddModal({
                 type="submit"
                 size="sm"
                 disabled={isSubmitting}
-                className="bg-zinc-100 text-zinc-900 hover:bg-zinc-200"
+                className="bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs shadow-xs"
               >
                 {isSubmitting ? (
                   <>

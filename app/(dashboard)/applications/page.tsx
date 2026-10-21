@@ -26,11 +26,11 @@ export default async function ApplicationsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
             <SendHorizontal className="h-6 w-6 text-purple-600 dark:text-purple-400" />
             Tender Applications Pipeline
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Track in-progress bid preparation, document bundle checklists, and submission states.
           </p>
         </div>

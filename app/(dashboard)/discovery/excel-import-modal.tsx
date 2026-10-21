@@ -288,23 +288,23 @@ export function ExcelImportModal({
             <div className="space-y-5">
               {/* Stat Cards */}
               <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="rounded-lg border border-zinc-800 bg-zinc-950/80 p-3">
-                  <span className="text-xs text-zinc-400">Total Scanned</span>
-                  <div className="text-2xl font-bold text-zinc-100 mt-1">
+                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/80 p-3">
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400">Total Scanned</span>
+                  <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
                     {summaryData.totalProcessed}
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-emerald-500/30 bg-emerald-950/10 p-3">
-                  <span className="text-xs text-emerald-400">Imported as Relevant</span>
-                  <div className="text-2xl font-bold text-emerald-400 mt-1">
+                <div className="rounded-lg border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/10 p-3">
+                  <span className="text-xs text-emerald-700 dark:text-emerald-400">Imported as Relevant</span>
+                  <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-1">
                     {summaryData.importedCount}
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-zinc-800 bg-zinc-950/80 p-3">
-                  <span className="text-xs text-zinc-400">Skipped (Non-ICT)</span>
-                  <div className="text-2xl font-bold text-zinc-400 mt-1">
+                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/80 p-3">
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400">Skipped (Non-ICT)</span>
+                  <div className="text-2xl font-bold text-zinc-700 dark:text-zinc-400 mt-1">
                     {summaryData.skippedCount}
                   </div>
                 </div>

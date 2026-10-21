@@ -19,10 +19,10 @@ export default async function CompanyProfilePage() {
     <div className="space-y-8 max-w-6xl mx-auto pb-16">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           Company Profile & Compliance
         </h1>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           Central authority for corporate credentials, statutory certificates, AGPO verification, and technical capacity.
         </p>
       </div>

@@ -32,16 +32,16 @@ export function ScraperAuditModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm animate-in fade-in">
-      <Card className="w-full max-w-2xl border-zinc-700 bg-zinc-900 shadow-2xl max-h-[85vh] flex flex-col">
-        <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-zinc-800 shrink-0">
+      <Card className="w-full max-w-2xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-2xl max-h-[85vh] flex flex-col">
+        <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800 shrink-0">
           <div>
             <div className="flex items-center space-x-2">
-              <Activity className="h-5 w-5 text-emerald-400" />
-              <CardTitle className="text-base font-semibold text-zinc-100">
+              <Activity className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+              <CardTitle className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
                 Scraper Health & Execution Logs
               </CardTitle>
             </div>
-            <CardDescription className="text-xs text-zinc-400 mt-0.5">
+            <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Live status of Kenya public procurement scrapers (tenders.go.ke, agpo.go.ke).
             </CardDescription>
           </div>
@@ -51,14 +51,14 @@ export function ScraperAuditModal({
               size="sm"
               disabled={isScraping}
               onClick={onTriggerScrape}
-              className="border-zinc-700 text-xs h-8"
+              className="border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs h-8"
             >
               <RefreshCw className={`h-3.5 w-3.5 mr-1 ${isScraping ? 'animate-spin' : ''}`} />
               Run Now
             </Button>
             <button
               onClick={onClose}
-              className="text-zinc-500 hover:text-zinc-300 transition-colors"
+              className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -67,11 +67,11 @@ export function ScraperAuditModal({
 
         <CardContent className="p-4 overflow-y-auto flex-1 space-y-3">
           {logs.length === 0 ? (
-            <div className="flex h-40 items-center justify-center text-xs text-zinc-500 border border-dashed border-zinc-800 rounded-lg">
+            <div className="flex h-40 items-center justify-center text-xs text-zinc-500 border border-dashed border-zinc-300 dark:border-zinc-800 rounded-lg">
               No scrape runs recorded yet. Click &quot;Run Now&quot; to test the live discovery engine.
             </div>
           ) : (
-            <div className="divide-y divide-zinc-800/80 rounded-lg border border-zinc-800 bg-zinc-950/60">
+            <div className="divide-y divide-zinc-200 dark:divide-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/60">
               {logs.map((log) => {
                 const isSuccess = log.status === 'success';
 
@@ -88,7 +88,7 @@ export function ScraperAuditModal({
                             <XCircle className="h-3 w-3 mr-1" /> Failed
                           </Badge>
                         )}
-                        <span className="font-semibold text-zinc-200">{log.source}</span>
+                        <span className="font-semibold text-zinc-900 dark:text-zinc-200">{log.source}</span>
                       </div>
 
                       <span className="text-[11px] text-zinc-500 flex items-center gap-1">
@@ -97,13 +97,13 @@ export function ScraperAuditModal({
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-4 text-[11px] text-zinc-400">
-                      <span>Found: <strong className="text-zinc-200">{log.tenders_found}</strong></span>
-                      <span>Imported: <strong className="text-emerald-400">{log.tenders_imported}</strong></span>
+                    <div className="flex items-center gap-4 text-[11px] text-zinc-600 dark:text-zinc-400">
+                      <span>Found: <strong className="text-zinc-900 dark:text-zinc-200">{log.tenders_found}</strong></span>
+                      <span>Imported: <strong className="text-emerald-600 dark:text-emerald-400">{log.tenders_imported}</strong></span>
                     </div>
 
                     {log.error_message && (
-                      <div className="rounded bg-red-950/30 border border-red-500/20 p-2 text-[11px] text-red-300">
+                      <div className="rounded bg-red-500/10 border border-red-500/20 p-2 text-[11px] text-red-600 dark:text-red-300">
                         {log.error_message}
                       </div>
                     )}
