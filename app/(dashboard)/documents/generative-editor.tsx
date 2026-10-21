@@ -300,9 +300,9 @@ export function GenerativeEditor({
   }, [content]);
 
   return (
-    <Card className="border-zinc-800 bg-zinc-900/40">
+    <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
       {/* Document Type Tabs */}
-      <div className="border-b border-zinc-800/80 bg-zinc-950/40 px-3 pt-2">
+      <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-3 pt-2">
         <div className="flex flex-wrap items-center gap-1.5">
           {DOC_TYPE_TABS.map((tab) => {
             const Icon = tab.icon;
@@ -318,16 +318,16 @@ export function GenerativeEditor({
                 className={cn(
                   'flex items-center gap-2 rounded-t-lg px-3.5 py-2.5 text-xs font-medium transition-all border-b-2',
                   isActive
-                    ? 'border-cyan-500 bg-zinc-900 text-zinc-100'
-                    : 'border-transparent text-zinc-400 hover:bg-zinc-900/50 hover:text-zinc-300'
+                    ? 'border-purple-600 bg-white text-purple-900 font-semibold shadow-xs dark:border-purple-400 dark:bg-zinc-900 dark:text-purple-300'
+                    : 'border-transparent text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/50 dark:hover:text-zinc-200'
                 )}
               >
-                <Icon className={cn('h-3.5 w-3.5', isActive ? 'text-cyan-400' : 'text-zinc-500')} />
+                <Icon className={cn('h-3.5 w-3.5', isActive ? 'text-purple-600 dark:text-purple-400' : 'text-zinc-500')} />
                 <span>{tab.label}</span>
                 {isTabFinal ? (
                   <Badge variant="success" className="text-[9px] px-1 py-0 h-4">Final</Badge>
                 ) : hasDraft ? (
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-purple-600 dark:bg-purple-400" />
                 ) : null}
               </button>
             );
@@ -335,11 +335,11 @@ export function GenerativeEditor({
         </div>
       </div>
 
-      <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
           <div className="space-y-1">
             <div className="flex items-center gap-2 flex-wrap">
-              <CardTitle className="text-sm font-semibold text-zinc-100">
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 {DOC_TYPE_TABS.find((t) => t.type === activeDocType)?.label} Studio
               </CardTitle>
               {activeDocRecord && (
@@ -351,12 +351,12 @@ export function GenerativeEditor({
                 </Badge>
               )}
               {wordCount > 0 && (
-                <span className="text-[11px] text-zinc-500">
+                <span className="text-[11px] text-zinc-500 font-medium">
                   {wordCount.toLocaleString()} words · ~{Math.ceil(wordCount / 200)} min read
                 </span>
               )}
             </div>
-            <CardDescription className="text-xs text-zinc-400">
+            <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
               {DOC_TYPE_TABS.find((t) => t.type === activeDocType)?.description}
             </CardDescription>
           </div>
@@ -369,8 +369,8 @@ export function GenerativeEditor({
               variant="outline"
               onClick={() => setShowConfig(!showConfig)}
               className={cn(
-                'h-8 text-xs border-zinc-800 text-zinc-300 hover:text-zinc-100',
-                showConfig && 'bg-zinc-800 text-cyan-400 border-cyan-500/40'
+                'h-8 text-xs border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 bg-white dark:bg-zinc-900 font-medium',
+                showConfig && 'bg-purple-50 text-purple-700 border-purple-300 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-700'
               )}
             >
               <Sliders className="h-3.5 w-3.5 mr-1.5" />
@@ -379,7 +379,7 @@ export function GenerativeEditor({
 
             {/* Version Switcher */}
             {docsForActiveType.length > 0 && (
-              <div className="flex items-center space-x-1.5 bg-zinc-950/60 border border-zinc-800 rounded-lg px-2 h-8">
+              <div className="flex items-center space-x-1.5 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-2 h-8 shadow-xs">
                 <History className="h-3.5 w-3.5 text-zinc-500" />
                 <select
                   value={selectedVersion}
@@ -389,10 +389,10 @@ export function GenerativeEditor({
                     const doc = docsForActiveType.find((d) => d.version === ver);
                     if (doc) setContent(doc.content || '');
                   }}
-                  className="bg-transparent text-xs text-zinc-200 outline-none cursor-pointer pr-1"
+                  className="bg-transparent text-xs text-zinc-800 dark:text-zinc-200 outline-none cursor-pointer pr-1 font-medium"
                 >
                   {docsForActiveType.map((d) => (
-                    <option key={d.id} value={d.version} className="bg-zinc-900 text-zinc-200">
+                    <option key={d.id} value={d.version} className="bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200">
                       v{d.version} {d.status === 'final' ? '(Final)' : `(${new Date(d.created_at).toLocaleDateString()})`}
                     </option>
                   ))}
@@ -405,7 +405,7 @@ export function GenerativeEditor({
               size="sm"
               onClick={handleGenerateInitialDraft}
               disabled={isGenerating || isFinal}
-              className="h-8 text-xs bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-sm"
+              className="h-8 text-xs bg-purple-600 hover:bg-purple-700 text-white font-medium shadow-xs"
             >
               {isGenerating ? (
                 <>
@@ -428,7 +428,7 @@ export function GenerativeEditor({
                 size="sm"
                 onClick={handleMarkAsFinal}
                 disabled={isFinalizing}
-                className="h-8 text-xs bg-emerald-600 hover:bg-emerald-500 text-white"
+                className="h-8 text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-xs"
               >
                 {isFinalizing ? (
                   <Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />
@@ -440,7 +440,7 @@ export function GenerativeEditor({
             )}
 
             {isFinal && (
-              <Badge variant="success" className="h-8 px-2.5 gap-1.5 text-xs">
+              <Badge variant="success" className="h-8 px-2.5 gap-1.5 text-xs font-medium">
                 <Lock className="h-3 w-3" /> Locked for Bid
               </Badge>
             )}
@@ -449,18 +449,18 @@ export function GenerativeEditor({
 
         {/* Collapsible Tender Parameters Bar */}
         {showConfig && (
-          <div className="mt-3 pt-3 border-t border-zinc-800/80 bg-zinc-950/40 -mx-4 -mb-3 p-4 rounded-b-lg space-y-3">
+          <div className="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 -mx-4 -mb-3 p-4 rounded-b-lg space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
-                <Sliders className="h-3.5 w-3.5 text-cyan-400" />
+              <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-200 flex items-center gap-1.5">
+                <Sliders className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
                 Tender-Specific Parameters (Injected into Gemini Prompt & Financial Formulas)
               </span>
-              <span className="text-[11px] text-zinc-500">Ref: {tender.external_reference || 'N/A'}</span>
+              <span className="text-[11px] text-zinc-500 font-mono">Ref: {tender.external_reference || 'N/A'}</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               <div>
-                <label className="text-[11px] font-medium text-zinc-400 block mb-1">
+                <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 block mb-1">
                   Proposed Price (KES)
                 </label>
                 <Input
@@ -468,12 +468,12 @@ export function GenerativeEditor({
                   value={proposedPrice}
                   onChange={(e) => setProposedPrice(Number(e.target.value))}
                   placeholder="e.g. 4500000"
-                  className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-200"
+                  className="h-8 text-xs bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-medium text-zinc-400 block mb-1">
+                <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 block mb-1">
                   Estimated Timeline (Months)
                 </label>
                 <Input
@@ -481,32 +481,32 @@ export function GenerativeEditor({
                   value={timelineMonths}
                   onChange={(e) => setTimelineMonths(Number(e.target.value))}
                   placeholder="e.g. 4"
-                  className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-200"
+                  className="h-8 text-xs bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100"
                 />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-[11px] font-medium text-zinc-400 block mb-1">
+                <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 block mb-1">
                   Assigned Key Personnel
                 </label>
                 <Input
                   value={assignedTeam}
                   onChange={(e) => setAssignedTeam(e.target.value)}
                   placeholder="e.g. Evans Kiprop (Lead), Grace Mwangi (Fullstack)"
-                  className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-200"
+                  className="h-8 text-xs bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[11px] font-medium text-zinc-400 block mb-1">
+              <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 block mb-1">
                 Custom Strategic Focus / Differentiating Angle
               </label>
               <Input
                 value={customStrategy}
                 onChange={(e) => setCustomStrategy(e.target.value)}
                 placeholder="e.g. Highlight ISO 27001 compliance, Kenya Data Protection Act 2019, 99.9% SLA"
-                className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-200"
+                className="h-8 text-xs bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100"
               />
             </div>
           </div>
@@ -518,17 +518,17 @@ export function GenerativeEditor({
         {statusMessage && (
           <div
             className={cn(
-              'rounded-lg border p-2.5 text-xs flex items-center justify-between',
+              'rounded-lg border p-2.5 text-xs flex items-center justify-between shadow-xs',
               statusMessage.error
-                ? 'border-red-500/30 bg-red-950/20 text-red-300'
-                : 'border-cyan-500/30 bg-cyan-950/20 text-cyan-300'
+                ? 'border-red-200 bg-red-50 text-red-900 dark:border-red-800 dark:bg-red-950/40 dark:text-red-300'
+                : 'border-purple-200 bg-purple-50 text-purple-900 dark:border-purple-800 dark:bg-purple-950/40 dark:text-purple-300'
             )}
           >
-            <span>{statusMessage.text}</span>
+            <span className="font-medium">{statusMessage.text}</span>
             <button
               type="button"
               onClick={() => setStatusMessage(null)}
-              className="text-zinc-500 hover:text-zinc-300 ml-2 text-xs"
+              className="text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 ml-2 text-xs font-medium"
             >
               Dismiss
             </button>
@@ -536,17 +536,17 @@ export function GenerativeEditor({
         )}
 
         {/* Editor Controls Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800 pb-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-2">
           {/* Write / Preview Tab */}
-          <div className="flex items-center space-x-1 bg-zinc-950 p-1 rounded-lg border border-zinc-800">
+          <div className="flex items-center space-x-1 bg-zinc-100 dark:bg-zinc-950 p-1 rounded-lg border border-zinc-200 dark:border-zinc-800">
             <button
               type="button"
               onClick={() => setEditorMode('write')}
               className={cn(
                 'flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium transition-colors',
                 editorMode === 'write'
-                  ? 'bg-zinc-800 text-zinc-100 shadow-sm'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-zinc-100'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
               )}
             >
               <Edit3 className="h-3 w-3" />
@@ -558,8 +558,8 @@ export function GenerativeEditor({
               className={cn(
                 'flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium transition-colors',
                 editorMode === 'preview'
-                  ? 'bg-zinc-800 text-zinc-100 shadow-sm'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-zinc-100'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
               )}
             >
               <Eye className="h-3 w-3" />
@@ -580,7 +580,7 @@ export function GenerativeEditor({
                   }
                   setShowSectionModal(true);
                 }}
-                className="h-7 text-xs border-zinc-800 text-cyan-400 hover:bg-cyan-950/30 hover:border-cyan-500/40"
+                className="h-7 text-xs border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100 dark:border-purple-800 dark:bg-purple-950/30 dark:text-purple-300 font-medium"
               >
                 <Wand2 className="h-3 w-3 mr-1" />
                 Regenerate Section
@@ -594,7 +594,7 @@ export function GenerativeEditor({
                 variant="outline"
                 onClick={() => handleSaveDraft(true)}
                 disabled={isSaving}
-                className="h-7 text-xs border-zinc-800 text-zinc-300 hover:text-zinc-100"
+                className="h-7 text-xs border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium"
               >
                 {isSaving ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
                 Save as v{selectedVersion + 1}
@@ -606,10 +606,10 @@ export function GenerativeEditor({
               size="sm"
               variant="ghost"
               onClick={handleCopy}
-              className="h-7 px-2 text-xs text-zinc-400 hover:text-zinc-200"
+              className="h-7 px-2 text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
               title="Copy Markdown"
             >
-              {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
             </Button>
 
             {/* Download */}
@@ -617,7 +617,7 @@ export function GenerativeEditor({
               size="sm"
               variant="ghost"
               onClick={handleDownload}
-              className="h-7 px-2 text-xs text-zinc-400 hover:text-zinc-200"
+              className="h-7 px-2 text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
               title="Download Markdown"
             >
               <Download className="h-3.5 w-3.5" />
@@ -635,17 +635,17 @@ export function GenerativeEditor({
                 disabled={isFinal}
                 placeholder="Markdown proposal content..."
                 rows={22}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-950 p-4 font-mono text-xs leading-relaxed text-zinc-200 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 resize-y"
+                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-4 font-mono text-xs leading-relaxed text-zinc-900 dark:text-zinc-100 focus:border-purple-600 focus:outline-none focus:ring-1 focus:ring-purple-600 resize-y shadow-xs"
               />
               {isFinal && (
-                <div className="absolute top-3 right-3 bg-zinc-900/90 border border-zinc-800 text-zinc-400 text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
-                  <Lock className="h-3 w-3 text-emerald-400" /> Finalized (Locked)
+                <div className="absolute top-3 right-3 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] px-2 py-0.5 rounded flex items-center gap-1 font-medium">
+                  <Lock className="h-3 w-3 text-emerald-600 dark:text-emerald-400" /> Finalized (Locked)
                 </div>
               )}
             </div>
           ) : (
-            <div className="min-h-[400px] max-h-[600px] overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-6 text-zinc-300">
-              <div className="prose prose-invert prose-sm max-w-none prose-headings:text-zinc-100 prose-headings:font-bold prose-h1:text-xl prose-h2:text-base prose-h2:border-b prose-h2:border-zinc-800 prose-h2:pb-1 prose-h3:text-sm prose-p:text-xs prose-p:leading-relaxed prose-li:text-xs prose-table:text-xs prose-th:bg-zinc-900 prose-th:p-2 prose-td:p-2 prose-td:border-zinc-800">
+            <div className="min-h-[400px] max-h-[600px] overflow-y-auto rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 text-zinc-800 dark:text-zinc-200 shadow-xs">
+              <div className="prose prose-zinc dark:prose-invert prose-sm max-w-none prose-headings:font-bold prose-h1:text-xl prose-h2:text-base prose-h2:border-b prose-h2:border-zinc-200 dark:prose-h2:border-zinc-800 prose-h2:pb-1 prose-h3:text-sm prose-p:text-xs prose-p:leading-relaxed prose-li:text-xs prose-table:text-xs prose-th:bg-zinc-50 dark:prose-th:bg-zinc-900 prose-th:p-2 prose-td:p-2 prose-td:border-zinc-200 dark:prose-td:border-zinc-800">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {content}
                 </ReactMarkdown>
@@ -653,15 +653,15 @@ export function GenerativeEditor({
             </div>
           )
         ) : (
-          <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 py-16 text-center space-y-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-950/40 border border-cyan-800/40 text-cyan-400">
+          <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-300 dark:border-zinc-800 py-16 text-center space-y-3 bg-zinc-50/50 dark:bg-zinc-950/40">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-50 border border-purple-200 text-purple-600 dark:bg-purple-950/40 dark:border-purple-800 dark:text-purple-400">
               <Sparkles className="h-6 w-6" />
             </div>
             <div className="max-w-md space-y-1">
-              <h4 className="text-sm font-medium text-zinc-200">
+              <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 No draft generated for {DOC_TYPE_TABS.find((t) => t.type === activeDocType)?.label}
               </h4>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-zinc-500 leading-relaxed">
                 Click &quot;Draft with Gemini&quot; to synthesize an authoritative first draft incorporating your company profile and tender requirements.
               </p>
             </div>
@@ -669,7 +669,7 @@ export function GenerativeEditor({
               size="sm"
               onClick={handleGenerateInitialDraft}
               disabled={isGenerating}
-              className="bg-cyan-600 hover:bg-cyan-500 text-white text-xs h-9"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs h-9 shadow-xs"
             >
               {isGenerating ? (
                 <>
@@ -687,38 +687,38 @@ export function GenerativeEditor({
 
       {/* "Regenerate Section" Modal */}
       {showSectionModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-lg rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-3">
               <div className="flex items-center space-x-2">
-                <Wand2 className="h-4 w-4 text-cyan-400" />
-                <h3 className="text-sm font-semibold text-zinc-100">
+                <Wand2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                   Regenerate Document Section
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setShowSectionModal(false)}
-                className="text-zinc-500 hover:text-zinc-300 text-sm"
+                className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 text-sm font-medium"
               >
                 ✕
               </button>
             </div>
 
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
               Instruct Gemini to rewrite a specific section while keeping the surrounding document intact.
             </p>
 
             <div className="space-y-3">
               <div>
-                <label className="text-xs font-medium text-zinc-300 block mb-1">
+                <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block mb-1">
                   Target Section to Revise
                 </label>
                 {detectedSections.length > 0 ? (
                   <select
                     value={targetSection}
                     onChange={(e) => setTargetSection(e.target.value)}
-                    className="w-full rounded-md border border-zinc-800 bg-zinc-950 p-2 text-xs text-zinc-200 focus:border-cyan-500 focus:outline-none"
+                    className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 p-2 text-xs text-zinc-900 dark:text-zinc-100 focus:border-purple-600 focus:outline-none"
                   >
                     {detectedSections.map((sec, idx) => (
                       <option key={idx} value={sec}>
@@ -731,13 +731,13 @@ export function GenerativeEditor({
                     value={targetSection}
                     onChange={(e) => setTargetSection(e.target.value)}
                     placeholder="e.g. 2. Technical Methodology"
-                    className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-200"
+                    className="h-8 text-xs bg-white dark:bg-zinc-950 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 )}
               </div>
 
               <div>
-                <label className="text-xs font-medium text-zinc-300 block mb-1">
+                <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block mb-1">
                   Operator Instruction / Prompt
                 </label>
                 <textarea
@@ -745,17 +745,17 @@ export function GenerativeEditor({
                   value={sectionPrompt}
                   onChange={(e) => setSectionPrompt(e.target.value)}
                   placeholder="e.g. Expand on the cloud security architecture, mentioning local data residency under the Kenya Data Protection Act 2019 and dual-datacenter failover SLA."
-                  className="w-full rounded-md border border-zinc-800 bg-zinc-950 p-2.5 text-xs text-zinc-200 focus:border-cyan-500 focus:outline-none"
+                  className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 p-2.5 text-xs text-zinc-900 dark:text-zinc-100 focus:border-purple-600 focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-end space-x-2 pt-2 border-t border-zinc-800">
+            <div className="flex items-center justify-end space-x-2 pt-2 border-t border-zinc-100 dark:border-zinc-800">
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
                 onClick={() => setShowSectionModal(false)}
-                className="text-xs text-zinc-400 hover:text-zinc-200"
+                className="text-xs border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300"
               >
                 Cancel
               </Button>
@@ -763,7 +763,7 @@ export function GenerativeEditor({
                 size="sm"
                 onClick={handleRegenerateSection}
                 disabled={isRegeneratingSection || !sectionPrompt.trim() || !targetSection}
-                className="text-xs bg-cyan-600 hover:bg-cyan-500 text-white"
+                className="text-xs bg-purple-600 hover:bg-purple-700 text-white font-medium shadow-xs"
               >
                 {isRegeneratingSection ? (
                   <>

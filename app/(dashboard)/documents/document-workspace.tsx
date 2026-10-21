@@ -74,18 +74,36 @@ export function DocumentWorkspace({
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-center gap-2.5">
-            <Layers className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
-            Document Generation & Compliance Studio
+            <Layers className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+            Document Generation &amp; Compliance Studio
           </h1>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Select an approved tender application to manage compliance bundles (Mode A) and draft technical & financial proposals with Google Vertex AI (Mode B).
+            Select an approved tender application to manage compliance bundles (Mode A) and draft technical &amp; financial proposals with Google Vertex AI (Mode B).
           </p>
         </div>
 
+        {/* Workflow Step Guidance Banner */}
+        <div className="flex items-center justify-between rounded-xl border border-purple-200 dark:border-purple-900/40 bg-purple-50/60 dark:bg-purple-950/20 p-3.5 text-xs text-zinc-800 dark:text-zinc-200 shadow-2xs">
+          <div className="flex items-center gap-2.5">
+            <span className="rounded-full bg-purple-600 text-white font-mono font-bold text-[10px] px-2 py-0.5 shrink-0">
+              STEP 3 OF 4
+            </span>
+            <p className="leading-relaxed">
+              <strong>Draft Proposals &amp; Attach Certs:</strong> Use Vertex AI to write tailored technical proposals, and attach mandatory statutory certificates from your Company Vault.
+            </p>
+          </div>
+          <Link
+            href="/applications"
+            className="shrink-0 text-purple-700 dark:text-purple-400 font-semibold hover:underline hidden md:inline-flex items-center gap-1"
+          >
+            Next: Applications &rarr;
+          </Link>
+        </div>
+
         {activeApplications.length === 0 ? (
-          <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] shadow-sm">
+          <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
             <CardContent className="flex flex-col items-center justify-center py-16 text-center space-y-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/40 text-cyan-600 dark:text-cyan-400">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/40 text-purple-600 dark:text-purple-400">
                 <FileCheck2 className="h-7 w-7" />
               </div>
               <div className="max-w-md space-y-1">
@@ -98,7 +116,7 @@ export function DocumentWorkspace({
               </div>
               <Link
                 href="/qualification"
-                className="inline-flex items-center rounded-md bg-cyan-600 hover:bg-cyan-500 px-4 py-2 text-xs font-medium text-white transition-colors shadow-sm"
+                className="inline-flex items-center rounded-md bg-purple-600 hover:bg-purple-700 px-4 py-2 text-xs font-medium text-white transition-colors shadow-xs"
               >
                 Go to Qualification Pipeline <ArrowRight className="h-4 w-4 ml-1.5" />
               </Link>
@@ -117,7 +135,7 @@ export function DocumentWorkspace({
               return (
                 <Card
                   key={application.id}
-                  className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm transition-all flex flex-col justify-between"
+                  className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-purple-300 dark:hover:border-purple-700 shadow-xs transition-all flex flex-col justify-between"
                 >
                   <CardHeader className="p-4 pb-3">
                     <div className="flex items-center justify-between gap-2 mb-2">
@@ -146,13 +164,13 @@ export function DocumentWorkspace({
                     <div className="rounded-lg bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200 dark:border-zinc-800/80 p-2.5 space-y-1.5">
                       <div className="flex justify-between text-[11px] text-zinc-600 dark:text-zinc-400">
                         <span>Checklist Readiness</span>
-                        <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                        <span className="text-purple-700 dark:text-purple-400 font-medium">
                           {verified}/{total} ({pct}%)
                         </span>
                       </div>
                       <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
                         <div
-                          className="h-full bg-emerald-500 transition-all"
+                          className="h-full bg-purple-600 transition-all"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
@@ -169,7 +187,7 @@ export function DocumentWorkspace({
                       <Button
                         size="sm"
                         onClick={() => router.push(`/documents?applicationId=${application.id}`)}
-                        className="h-7 text-xs bg-cyan-600 hover:bg-cyan-500 text-white shadow-sm"
+                        className="h-7 text-xs bg-purple-600 hover:bg-purple-700 text-white shadow-xs font-medium"
                       >
                         Open Studio <ChevronRight className="h-3 w-3 ml-1" />
                       </Button>
@@ -195,12 +213,12 @@ export function DocumentWorkspace({
           <div className="flex items-center gap-2 flex-wrap">
             <Link
               href="/documents"
-              className="text-xs text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors"
+              className="text-xs font-medium text-zinc-500 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
               ← All Applications
             </Link>
-            <span className="text-zinc-400 dark:text-zinc-700">/</span>
-            <Badge variant="outline" className="border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono">
+            <span className="text-zinc-300 dark:text-zinc-700">/</span>
+            <Badge variant="outline" className="border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono bg-zinc-50 dark:bg-zinc-800">
               {tender.external_reference || 'REF-N/A'}
             </Badge>
             <Badge
@@ -209,7 +227,7 @@ export function DocumentWorkspace({
             >
               {application.status}
             </Badge>
-            <Badge variant="secondary" className="text-[10px] bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30">
+            <Badge variant="secondary" className="text-[10px] bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 font-medium">
               AGPO Youth Reserved
             </Badge>
           </div>
@@ -218,12 +236,12 @@ export function DocumentWorkspace({
             {tender.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-600 dark:text-zinc-400">
-            <span className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-600 dark:text-zinc-400 font-medium">
+            <span className="flex items-center gap-1.5">
               <Building2 className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" />
               {tender.procuring_entity}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5">
               <Calendar className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" />
               Deadline: {new Date(tender.submission_deadline).toLocaleDateString()}
             </span>
@@ -241,7 +259,7 @@ export function DocumentWorkspace({
             <select
               value={application.id}
               onChange={(e) => router.push(`/documents?applicationId=${e.target.value}`)}
-              className="h-9 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 text-xs text-zinc-800 dark:text-zinc-200 focus:border-cyan-500 focus:outline-none shadow-sm"
+              className="h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 text-xs text-zinc-800 dark:text-zinc-200 focus:border-purple-500 focus:outline-none shadow-xs font-medium"
             >
               {activeApplications.map((a) => (
                 <option key={a.application.id} value={a.application.id}>
@@ -253,15 +271,15 @@ export function DocumentWorkspace({
 
           <Link
             href={`/applications/${application.id}`}
-            className="inline-flex items-center rounded-md bg-cyan-600 hover:bg-cyan-500 px-3 py-2 text-xs font-medium text-white transition-colors shadow-sm"
+            className="inline-flex items-center rounded-lg bg-purple-600 hover:bg-purple-700 px-3.5 py-2 text-xs font-semibold text-white transition-colors shadow-xs"
           >
-            Assemble Packet <ArrowRight className="h-3 w-3 ml-1.5" />
+            Assemble Packet <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
           </Link>
           <Link
             href="/applications"
-            className="inline-flex items-center rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 hover:bg-zinc-50 dark:hover:bg-zinc-800 px-3 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors shadow-sm"
+            className="inline-flex items-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 px-3.5 py-2 text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-colors shadow-xs"
           >
-            Pipeline <ExternalLink className="h-3 w-3 ml-1.5" />
+            Pipeline <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
           </Link>
         </div>
       </div>

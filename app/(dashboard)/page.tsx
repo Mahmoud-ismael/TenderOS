@@ -1,5 +1,6 @@
 import React from 'react';
 import { getExecutiveDashboardData } from '@/lib/data/dashboard';
+import { WorkflowStepper } from './components/workflow-stepper';
 import { AskAgentBox } from './components/ask-agent-box';
 import { PipelineFunnel } from './components/pipeline-funnel';
 import { UpcomingDeadlinesCard } from './components/upcoming-deadlines-card';
@@ -46,13 +47,16 @@ export default async function DashboardPage() {
         <div className="flex items-center gap-2">
           <Badge
             variant="outline"
-            className="border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300 text-xs px-2.5 py-1"
+            className="border-purple-300 bg-purple-50 text-purple-700 dark:border-purple-800 dark:bg-purple-950/40 dark:text-purple-300 text-xs px-2.5 py-1"
           >
-            <Sparkles className="h-3 w-3 mr-1.5 text-violet-600 dark:text-violet-400" />
+            <Sparkles className="h-3 w-3 mr-1.5 text-purple-600 dark:text-purple-400" />
             Vertex AI (Gemini 2.5 Flash)
           </Badge>
         </div>
       </div>
+
+      {/* 4-Step Sequential Workflow Stepper & Explainer */}
+      <WorkflowStepper />
 
       {/* Quick-Access Ask the Agent Prompt Box */}
       <AskAgentBox />

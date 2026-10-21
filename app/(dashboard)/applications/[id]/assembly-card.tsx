@@ -106,16 +106,16 @@ export function AssemblyCard({
   };
 
   return (
-    <Card className="border-zinc-800 bg-zinc-900/40">
-      <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
+    <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center space-x-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600 border border-purple-200 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-800">
               <FolderArchive className="h-5 w-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CardTitle className="text-sm font-semibold text-zinc-100">
+                <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                   Master Submission Packet Assembly
                 </CardTitle>
                 <Badge
@@ -125,7 +125,7 @@ export function AssemblyCard({
                   {assembledPacket ? 'Packet Assembled' : isChecklistReady ? 'Ready to Compile' : 'Drafting In Progress'}
                 </Badge>
               </div>
-              <CardDescription className="text-xs text-zinc-400 mt-0.5">
+              <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
                 Merges all finalized proposals, statutory certificates, and personnel annexes into a single government-standard PDF.
               </CardDescription>
             </div>
@@ -136,7 +136,7 @@ export function AssemblyCard({
               size="sm"
               onClick={handleAssemble}
               disabled={isAssembling}
-              className="bg-cyan-600 hover:bg-cyan-500 text-white text-xs h-9 shadow-sm"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs h-9 shadow-xs"
             >
               {isAssembling ? (
                 <>
@@ -158,7 +158,7 @@ export function AssemblyCard({
                 size="sm"
                 variant="outline"
                 onClick={handleDownload}
-                className="border-emerald-500/40 text-emerald-400 bg-emerald-950/20 hover:bg-emerald-900/40 text-xs h-9"
+                className="border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 dark:border-emerald-800 dark:text-emerald-300 dark:bg-emerald-950/40 text-xs h-9 font-medium"
               >
                 <Download className="h-3.5 w-3.5 mr-1.5" /> Download PDF ({assembledPacket.fileSizeKb} KB)
               </Button>
@@ -171,10 +171,10 @@ export function AssemblyCard({
         {feedback && (
           <div
             className={cn(
-              'rounded-lg border p-2.5 text-xs',
+              'rounded-lg border p-2.5 text-xs shadow-xs',
               feedback.error
-                ? 'border-red-500/30 bg-red-950/20 text-red-300'
-                : 'border-emerald-500/30 bg-emerald-950/20 text-emerald-300'
+                ? 'border-red-200 bg-red-50 text-red-900 dark:border-red-800 dark:bg-red-950/40 dark:text-red-300'
+                : 'border-purple-200 bg-purple-50 text-purple-900 dark:border-purple-800 dark:bg-purple-950/40 dark:text-purple-300'
             )}
           >
             {feedback.text}
@@ -183,7 +183,7 @@ export function AssemblyCard({
 
         {/* Ordered Government Packet Schedule */}
         <div className="space-y-2">
-          <p className="text-xs font-semibold text-zinc-300">
+          <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
             Government Standard Ordering (PPADA Submission Structure):
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
@@ -195,18 +195,18 @@ export function AssemblyCard({
               return (
                 <div
                   key={sec.num}
-                  className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-800 bg-zinc-950/40 text-xs"
+                  className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 text-xs shadow-xs"
                 >
                   <div className="flex items-center space-x-2 min-w-0 pr-2">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-zinc-900 border border-zinc-800 font-mono text-[10px] text-zinc-400">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 font-mono text-[10px] text-zinc-700 dark:text-zinc-300 font-semibold">
                       {sec.num}
                     </span>
-                    <span className="font-medium text-zinc-200 truncate">{sec.title}</span>
+                    <span className="font-semibold text-zinc-900 dark:text-zinc-100 truncate">{sec.title}</span>
                   </div>
 
                   <Badge
                     variant={isReady ? 'success' : isDraft ? 'outline' : 'secondary'}
-                    className="text-[9px] uppercase px-1.5 py-0 shrink-0"
+                    className="text-[9px] uppercase px-1.5 py-0 shrink-0 font-medium"
                   >
                     {isReady ? 'Ready' : isDraft ? 'Draft' : 'Pending'}
                   </Badge>
@@ -218,14 +218,14 @@ export function AssemblyCard({
 
         {/* Assembled Master File Badge */}
         {assembledPacket && (
-          <div className="rounded-lg border border-emerald-500/30 bg-emerald-950/10 p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="rounded-lg border border-emerald-200 bg-emerald-50/60 dark:border-emerald-800/40 dark:bg-emerald-950/20 p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
             <div className="flex items-center space-x-2.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-emerald-300">
+                <p className="text-xs font-semibold text-emerald-900 dark:text-emerald-300">
                   Master Submission File Generated
                 </p>
-                <p className="text-[11px] text-zinc-400">
+                <p className="text-[11px] text-zinc-600 dark:text-zinc-400">
                   Single consolidated document formatted for evaluation committee review.
                 </p>
               </div>
@@ -234,7 +234,7 @@ export function AssemblyCard({
             <Button
               size="sm"
               onClick={handleDownload}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs h-8"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs h-8 shadow-xs"
             >
               <Download className="h-3.5 w-3.5 mr-1.5" /> Download Master PDF
             </Button>

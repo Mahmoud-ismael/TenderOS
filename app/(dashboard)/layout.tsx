@@ -22,47 +22,82 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { NotificationBell } from '@/components/notifications/notification-bell';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { HowItWorksModal } from '@/components/guide/how-it-works-modal';
+import { HelpCircle } from 'lucide-react';
 
-const navItems = [
+interface NavItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  step?: string;
+  badge?: string;
+}
+
+interface NavSection {
+  title: string;
+  items: NavItem[];
+}
+
+const navSections: NavSection[] = [
   {
-    name: 'Dashboard',
-    href: '/',
-    icon: LayoutDashboard,
+    title: 'Overview',
+    items: [
+      {
+        name: 'Dashboard',
+        href: '/',
+        icon: LayoutDashboard,
+      },
+    ],
   },
   {
-    name: 'Tender Discovery',
-    href: '/discovery',
-    icon: Compass,
+    title: 'Tender Workflow',
+    items: [
+      {
+        name: 'Tender Discovery',
+        href: '/discovery',
+        icon: Compass,
+        step: '1',
+      },
+      {
+        name: 'Qualification',
+        href: '/qualification',
+        icon: CheckCircle2,
+        step: '2',
+      },
+      {
+        name: 'Documents',
+        href: '/documents',
+        icon: Files,
+        step: '3',
+      },
+      {
+        name: 'Applications',
+        href: '/applications',
+        icon: SendHorizontal,
+        step: '4',
+      },
+    ],
   },
   {
-    name: 'Qualification',
-    href: '/qualification',
-    icon: CheckCircle2,
-  },
-  {
-    name: 'Documents',
-    href: '/documents',
-    icon: Files,
-  },
-  {
-    name: 'Applications',
-    href: '/applications',
-    icon: SendHorizontal,
-  },
-  {
-    name: 'Company Profile',
-    href: '/company-profile',
-    icon: Building2,
-  },
-  {
-    name: 'Agent',
-    href: '/agent',
-    icon: Bot,
-  },
-  {
-    name: 'Settings',
-    href: '/settings',
-    icon: Settings,
+    title: 'Organization & Copilot',
+    items: [
+      {
+        name: 'Company Profile',
+        href: '/company-profile',
+        icon: Building2,
+      },
+      {
+        name: 'Agent',
+        href: '/agent',
+        icon: Bot,
+        badge: 'Vertex',
+      },
+      {
+        name: 'Settings',
+        href: '/settings',
+        icon: Settings,
+      },
+    ],
   },
 ];
 
@@ -75,6 +110,7 @@ export default function DashboardLayout({
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [isHowItWorksOpen, setIsHowItWorksOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -150,49 +186,72 @@ export default function DashboardLayout({
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 space-y-1 overflow-y-auto px-2.5 py-3">
-          {!isCollapsed && (
-            <div className="px-2.5 pb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-              Workspaces
-            </div>
-          )}
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname.startsWith(item.href);
+        <nav className="flex-1 space-y-4 overflow-y-auto px-2.5 py-3">
+          {navSections.map((section, sIdx) => (
+            <div key={sIdx} className="space-y-1">
+              {!isCollapsed && (
+                <div className="px-2.5 pb-1 text-[10px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                  {section.title}
+                </div>
+              )}
+              {section.items.map((item) => {
+                const Icon = item.icon;
+                const isActive =
+                  item.href === '/'
+                    ? pathname === '/'
+                    : pathname.startsWith(item.href);
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                title={isCollapsed ? item.name : undefined}
-                className={cn(
-                  'group flex items-center rounded-lg text-xs font-medium transition-all duration-150',
-                  isCollapsed ? 'justify-center p-2.5' : 'gap-3 px-3 py-2',
-                  isActive
-                    ? 'bg-zinc-200/90 text-zinc-950 shadow-xs dark:bg-zinc-800 dark:text-zinc-50 font-semibold'
-                    : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800/60 dark:hover:text-white'
-                )}
-              >
-                <Icon
-                  className={cn(
-                    'h-4 w-4 shrink-0 transition-colors',
-                    isActive
-                      ? 'text-zinc-950 dark:text-zinc-100'
-                      : 'text-zinc-500 group-hover:text-zinc-800 dark:text-zinc-400 dark:group-hover:text-zinc-200'
-                  )}
-                />
-                {!isCollapsed && <span className="truncate">{item.name}</span>}
-                {!isCollapsed && item.name === 'Agent' && (
-                  <span className="ml-auto flex items-center gap-1 rounded bg-violet-500/10 px-1.5 py-0.5 text-[9px] font-medium text-violet-600 dark:text-violet-400 border border-violet-500/20">
-                    <Sparkles className="h-2 w-2" /> Vertex
-                  </span>
-                )}
-              </Link>
-            );
-          })}
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    title={isCollapsed ? item.name : undefined}
+                    className={cn(
+                      'group flex items-center rounded-lg text-xs font-medium transition-all duration-150',
+                      isCollapsed ? 'justify-center p-2.5' : 'gap-2.5 px-2.5 py-2',
+                      isActive
+                        ? 'bg-purple-600 text-white shadow-xs font-semibold'
+                        : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white'
+                    )}
+                  >
+                    <Icon
+                      className={cn(
+                        'h-4 w-4 shrink-0 transition-colors',
+                        isActive
+                          ? 'text-white'
+                          : 'text-zinc-500 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-200'
+                      )}
+                    />
+                    {!isCollapsed && <span className="truncate flex-1">{item.name}</span>}
+                    {!isCollapsed && item.step && (
+                      <span
+                        className={cn(
+                          'rounded-full px-1.5 py-0.2 text-[9px] font-bold font-mono',
+                          isActive
+                            ? 'bg-white/20 text-white'
+                            : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'
+                        )}
+                      >
+                        {item.step}
+                      </span>
+                    )}
+                    {!isCollapsed && item.badge && (
+                      <span
+                        className={cn(
+                          'flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-medium border',
+                          isActive
+                            ? 'bg-white/20 text-white border-white/30'
+                            : 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-800'
+                        )}
+                      >
+                        <Sparkles className="h-2 w-2" /> {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
         </nav>
 
         {/* Footer User / Logout / Expand button */}
@@ -258,11 +317,21 @@ export default function DashboardLayout({
             </span>
           </div>
 
-          <div className="flex items-center space-x-2.5 text-xs text-zinc-600 dark:text-zinc-400">
+          <div className="flex items-center space-x-2 text-xs text-zinc-600 dark:text-zinc-400">
             <span className="hidden sm:flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-medium">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Vertex AI & Supabase Connected
             </span>
+
+            <button
+              onClick={() => setIsHowItWorksOpen(true)}
+              className="flex items-center gap-1.5 rounded-lg border border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-950/40 px-2.5 py-1.5 text-xs font-medium text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors shadow-2xs"
+              title="How TenderOS works guide"
+            >
+              <HelpCircle className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
+              <span className="hidden md:inline">How It Works</span>
+            </button>
+
             <ThemeToggle />
             <NotificationBell />
           </div>
@@ -273,6 +342,9 @@ export default function DashboardLayout({
           {children}
         </main>
       </div>
+
+      {/* Global How It Works Walkthrough Modal */}
+      <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />
     </div>
   );
 }

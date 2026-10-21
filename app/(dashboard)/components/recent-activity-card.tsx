@@ -38,20 +38,20 @@ function formatRelativeTime(dateStr: string): string {
 function getActivityIcon(type: string, severity: string) {
   switch (type) {
     case 'tender_discovered':
-      return <Compass className="h-3.5 w-3.5 text-cyan-400" />;
+      return <Compass className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />;
     case 'qualification_pending':
-      return <Sparkles className="h-3.5 w-3.5 text-violet-400" />;
+      return <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />;
     case 'checklist_incomplete':
-      return <FileCheck2 className="h-3.5 w-3.5 text-purple-400" />;
+      return <FileCheck2 className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />;
     case 'compliance_expiring':
-      return <ShieldAlert className="h-3.5 w-3.5 text-amber-400" />;
+      return <ShieldAlert className="h-3.5 w-3.5 text-amber-500" />;
     case 'deadline_approaching':
-      return <Clock className="h-3.5 w-3.5 text-red-400" />;
+      return <Clock className="h-3.5 w-3.5 text-red-500" />;
     default:
       return severity === 'critical' ? (
-        <ShieldAlert className="h-3.5 w-3.5 text-red-400" />
+        <ShieldAlert className="h-3.5 w-3.5 text-red-500" />
       ) : (
-        <Bot className="h-3.5 w-3.5 text-blue-400" />
+        <Bot className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
       );
   }
 }
@@ -62,17 +62,17 @@ export function RecentActivityCard({
   activities: NotificationRow[];
 }) {
   return (
-    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] shadow-sm flex flex-col justify-between">
-      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800/80">
+    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-col justify-between">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-200 dark:border-violet-500/30">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/40">
               <Activity className="h-4 w-4" />
             </div>
             <div>
               <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                 Recent Agent Activity Feed
-                <Badge variant="outline" className="border-violet-300 dark:border-violet-500/30 text-violet-700 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 text-[10px]">
+                <Badge variant="outline" className="border-purple-300 dark:border-purple-800 text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/40 text-[10px]">
                   Autonomous Ops
                 </Badge>
               </CardTitle>
@@ -103,7 +103,7 @@ export function RecentActivityCard({
             <div className="pt-2">
               <Link
                 href="/discovery"
-                className="inline-flex items-center text-xs text-violet-600 dark:text-violet-400 hover:underline"
+                className="inline-flex items-center text-xs text-purple-600 dark:text-purple-400 hover:underline"
               >
                 <span>Trigger Manual Portal Discovery</span>
                 <ArrowRight className="h-3 w-3 ml-1" />
@@ -126,7 +126,7 @@ export function RecentActivityCard({
               return (
                 <div
                   key={item.id}
-                  className="group flex items-start gap-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0f1015] p-2.5 text-xs hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors shadow-xs"
+                  className="group flex items-start gap-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-2.5 text-xs hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors shadow-2xs"
                 >
                   <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
                     {getActivityIcon(item.type, item.severity)}
@@ -149,7 +149,7 @@ export function RecentActivityCard({
                     <div className="pt-0.5">
                       <Link
                         href={targetLink}
-                        className="inline-flex items-center text-[10px] font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors gap-0.5"
+                        className="inline-flex items-center text-[10px] font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors gap-0.5"
                       >
                         <span>View Detail</span>
                         <ArrowRight className="h-2.5 w-2.5" />

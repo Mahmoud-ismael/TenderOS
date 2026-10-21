@@ -85,20 +85,20 @@ export function SubmissionStatusCard({
   };
 
   return (
-    <Card className="border-zinc-800 bg-zinc-900/40">
-      <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
+    <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center space-x-3">
             <div
               className={cn(
                 'flex h-10 w-10 items-center justify-center rounded-xl border',
                 status === 'awarded'
-                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                  ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800'
                   : status === 'rejected'
-                  ? 'bg-red-500/10 text-red-400 border-red-500/30'
+                  ? 'bg-red-50 text-red-600 border-red-200 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800'
                   : isSubmitted
-                  ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
-                  : 'bg-zinc-800 text-zinc-400 border-zinc-700'
+                  ? 'bg-purple-50 text-purple-600 border-purple-200 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-800'
+                  : 'bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700'
               )}
             >
               {status === 'awarded' ? (
@@ -112,7 +112,7 @@ export function SubmissionStatusCard({
 
             <div>
               <div className="flex items-center gap-2">
-                <CardTitle className="text-sm font-semibold text-zinc-100">
+                <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                   Submission & Outcome Tracking
                 </CardTitle>
                 <Badge
@@ -134,21 +134,21 @@ export function SubmissionStatusCard({
                     : status}
                 </Badge>
               </div>
-              <CardDescription className="text-xs text-zinc-400 mt-0.5">
+              <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
                 Timestamp final submission and track procurement evaluation outcomes.
               </CardDescription>
             </div>
           </div>
 
           {/* Running Win-Rate Pill */}
-          <div className="flex items-center space-x-3 bg-zinc-950/80 border border-zinc-800 px-3 py-1.5 rounded-lg text-xs self-start sm:self-auto">
+          <div className="flex items-center space-x-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 rounded-lg text-xs self-start sm:self-auto shadow-xs">
             <div className="flex items-center space-x-1.5">
-              <TrendingUp className="h-4 w-4 text-emerald-400" />
-              <span className="text-zinc-400">Hisako Win Rate:</span>
-              <span className="font-bold text-emerald-400">{winRateStats.winRate}%</span>
+              <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-zinc-500 dark:text-zinc-400">Hisako Win Rate:</span>
+              <span className="font-bold text-emerald-600 dark:text-emerald-400">{winRateStats.winRate}%</span>
             </div>
-            <span className="text-zinc-700">|</span>
-            <span className="text-[11px] text-zinc-400">
+            <span className="text-zinc-300 dark:text-zinc-700">|</span>
+            <span className="text-[11px] text-zinc-600 dark:text-zinc-400 font-medium">
               {winRateStats.awardedCount} won of {winRateStats.totalSubmitted} submitted
             </span>
           </div>
@@ -157,19 +157,19 @@ export function SubmissionStatusCard({
 
       <CardContent className="p-4 space-y-4">
         {feedback && (
-          <div className="rounded-lg border border-cyan-500/30 bg-cyan-950/20 p-2.5 text-xs text-cyan-300">
+          <div className="rounded-lg border border-purple-200 bg-purple-50 p-2.5 text-xs text-purple-900 dark:border-purple-800 dark:bg-purple-950/40 dark:text-purple-300 font-medium shadow-xs">
             {feedback}
           </div>
         )}
 
         {/* Step 1: Mark As Submitted */}
         {!isSubmitted ? (
-          <div className="rounded-lg border border-purple-500/20 bg-purple-950/10 p-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="rounded-lg border border-purple-200 bg-purple-50/50 dark:border-purple-800/40 dark:bg-purple-950/20 p-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs">
             <div className="space-y-0.5">
-              <p className="text-xs font-semibold text-purple-300 flex items-center gap-1.5">
-                <SendHorizontal className="h-4 w-4" /> Ready to finalize delivery?
+              <p className="text-xs font-semibold text-purple-900 dark:text-purple-300 flex items-center gap-1.5">
+                <SendHorizontal className="h-4 w-4 text-purple-600 dark:text-purple-400" /> Ready to finalize delivery?
               </p>
-              <p className="text-[11px] text-zinc-400">
+              <p className="text-[11px] text-zinc-600 dark:text-zinc-400">
                 Clicking &quot;Mark as Submitted&quot; timestamps the filing date and ceases active deadline countdown alerts.
               </p>
             </div>
@@ -178,7 +178,7 @@ export function SubmissionStatusCard({
               size="sm"
               onClick={handleMarkSubmitted}
               disabled={isSubmitting}
-              className="bg-purple-600 hover:bg-purple-500 text-white text-xs h-8 shrink-0"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs h-8 shrink-0 shadow-xs"
             >
               {isSubmitting ? (
                 <>
@@ -193,12 +193,12 @@ export function SubmissionStatusCard({
           </div>
         ) : (
           <div className="space-y-3">
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
+            <div className="rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs shadow-xs">
               <div className="flex items-center space-x-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span className="text-zinc-300">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-zinc-700 dark:text-zinc-300">
                   Submitted On:{' '}
-                  <strong className="text-zinc-100 font-mono">
+                  <strong className="text-zinc-900 dark:text-zinc-100 font-mono">
                     {submittedTimestamp ? new Date(submittedTimestamp).toLocaleString() : 'Timestamped'}
                   </strong>
                 </span>
@@ -209,10 +209,10 @@ export function SubmissionStatusCard({
             </div>
 
             {/* Step 2: Post-Submission Outcome Tracking */}
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-3.5 space-y-3">
+            <div className="rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 p-3.5 space-y-3 shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
-                  <Trophy className="h-3.5 w-3.5 text-amber-400" />
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-200 flex items-center gap-1.5">
+                  <Trophy className="h-3.5 w-3.5 text-amber-500" />
                   Record Tender Evaluation Outcome:
                 </span>
                 <span className="text-[11px] text-zinc-500">
@@ -226,13 +226,13 @@ export function SubmissionStatusCard({
                   onClick={() => handleUpdateOutcome('awarded')}
                   disabled={isUpdatingOutcome || status === 'awarded'}
                   className={cn(
-                    'h-8 text-xs',
+                    'h-8 text-xs font-medium',
                     status === 'awarded'
                       ? 'bg-emerald-600 text-white cursor-default'
-                      : 'bg-zinc-800 hover:bg-emerald-600 hover:text-white text-zinc-300'
+                      : 'bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-emerald-600 hover:text-white text-zinc-700 dark:text-zinc-300'
                   )}
                 >
-                  <Trophy className="h-3.5 w-3.5 mr-1.5 text-amber-300" />
+                  <Trophy className="h-3.5 w-3.5 mr-1.5 text-amber-500" />
                   Mark as Won / Awarded
                 </Button>
 
@@ -241,26 +241,26 @@ export function SubmissionStatusCard({
                   onClick={() => handleUpdateOutcome('rejected')}
                   disabled={isUpdatingOutcome || status === 'rejected'}
                   className={cn(
-                    'h-8 text-xs',
+                    'h-8 text-xs font-medium',
                     status === 'rejected'
                       ? 'bg-red-600 text-white cursor-default'
-                      : 'bg-zinc-800 hover:bg-red-600 hover:text-white text-zinc-300'
+                      : 'bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-red-600 hover:text-white text-zinc-700 dark:text-zinc-300'
                   )}
                 >
-                  <XCircle className="h-3.5 w-3.5 mr-1.5 text-red-400" />
+                  <XCircle className="h-3.5 w-3.5 mr-1.5 text-red-500" />
                   Mark as Lost / Rejected
                 </Button>
               </div>
 
               <div>
-                <label className="text-[11px] font-medium text-zinc-400 block mb-1">
+                <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 block mb-1">
                   Evaluation Feedback / Debrief Notes
                 </label>
                 <Input
                   value={outcomeNotes}
                   onChange={(e) => setOutcomeNotes(e.target.value)}
                   placeholder="e.g. Awarded contract at KES 4.2M. Notice of intention to award issued. Signed contract pending."
-                  className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-200"
+                  className="h-8 text-xs bg-white dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100"
                 />
               </div>
             </div>

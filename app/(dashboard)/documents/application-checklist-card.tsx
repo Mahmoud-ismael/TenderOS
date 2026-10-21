@@ -83,34 +83,34 @@ export function ApplicationChecklistCard({
   };
 
   return (
-    <Card className="border-zinc-800 bg-zinc-900/40">
-      <CardHeader className="pb-3 border-b border-zinc-800/60">
+    <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+      <CardHeader className="pb-3 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <CardTitle className="text-sm font-semibold text-zinc-100 flex items-center gap-2">
-                <FileCheck className="h-4 w-4 text-emerald-400" />
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                <FileCheck className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                 Tender Compliance & Bid Checklist
               </CardTitle>
-              <Badge variant="outline" className="border-zinc-700 text-zinc-300 text-[10px]">
+              <Badge variant="outline" className="border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-[10px] bg-zinc-50 dark:bg-zinc-800">
                 {verifiedCount} / {totalItems} Complete ({completionPercentage}%)
               </Badge>
             </div>
-            <CardDescription className="text-xs text-zinc-400">
+            <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
               Requirements parsed from tender specification. Click an item to open its drafting studio or packet vault.
             </CardDescription>
           </div>
 
           <div className="w-full sm:w-48 space-y-1.5">
-            <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
               <div
-                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-500"
+                className="h-full bg-purple-600 transition-all duration-500"
                 style={{ width: `${completionPercentage}%` }}
               />
             </div>
-            <div className="flex justify-between text-[10px] text-zinc-400">
+            <div className="flex justify-between text-[10px] text-zinc-500 dark:text-zinc-400">
               <span>{attachedCount} in draft</span>
-              <span className="text-emerald-400 font-medium">{verifiedCount} verified</span>
+              <span className="text-purple-600 dark:text-purple-400 font-medium">{verifiedCount} verified</span>
             </div>
           </div>
         </div>
@@ -131,12 +131,12 @@ export function ApplicationChecklistCard({
                 <div
                   key={idx}
                   className={cn(
-                    'group flex items-center justify-between p-2.5 rounded-lg border transition-all text-xs',
+                    'group flex items-center justify-between p-3 rounded-lg border transition-all text-xs',
                     item.status === 'verified'
-                      ? 'border-emerald-500/20 bg-emerald-950/10 hover:border-emerald-500/40'
+                      ? 'border-emerald-200 bg-emerald-50 text-zinc-900 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-zinc-100'
                       : item.status === 'attached'
-                      ? 'border-blue-500/20 bg-blue-950/10 hover:border-blue-500/40'
-                      : 'border-zinc-800 bg-zinc-950/40 hover:border-zinc-700'
+                      ? 'border-purple-200 bg-purple-50 text-zinc-900 dark:border-purple-800 dark:bg-purple-950/30 dark:text-zinc-100'
+                      : 'border-zinc-200 bg-zinc-50/80 text-zinc-900 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100'
                   )}
                 >
                   <div className="flex items-start space-x-2.5 min-w-0 pr-2">
@@ -145,16 +145,16 @@ export function ApplicationChecklistCard({
                       disabled={isUpdating}
                       onClick={() => handleToggleStatus(idx, item.status)}
                       title="Click to advance status"
-                      className="mt-0.5 shrink-0 text-zinc-500 hover:text-zinc-200 transition-colors"
+                      className="mt-0.5 shrink-0 text-zinc-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                     >
                       {isUpdating ? (
-                        <Loader2 className="h-4 w-4 animate-spin text-zinc-400" />
+                        <Loader2 className="h-4 w-4 animate-spin text-purple-600" />
                       ) : item.status === 'verified' ? (
-                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                       ) : item.status === 'attached' ? (
-                        <FileCheck className="h-4 w-4 text-blue-400" />
+                        <FileCheck className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                       ) : (
-                        <CircleDashed className="h-4 w-4 text-zinc-500 group-hover:text-zinc-400" />
+                        <CircleDashed className="h-4 w-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300" />
                       )}
                     </button>
 
@@ -162,14 +162,13 @@ export function ApplicationChecklistCard({
                       <div className="flex items-center gap-1.5 flex-wrap">
                         <span
                           className={cn(
-                            'font-medium truncate',
-                            item.status === 'verified' ? 'text-zinc-200' : 'text-zinc-300'
+                            'font-semibold truncate text-zinc-900 dark:text-zinc-100'
                           )}
                         >
                           {item.item}
                         </span>
                         {item.required && (
-                          <span className="text-[10px] text-red-400 font-semibold">*req</span>
+                          <span className="text-[10px] text-rose-600 dark:text-rose-400 font-semibold">*req</span>
                         )}
                       </div>
 
@@ -178,25 +177,24 @@ export function ApplicationChecklistCard({
                           variant={
                             item.status === 'verified'
                               ? 'success'
-                              : item.status === 'attached'
-                              ? 'outline'
-                              : 'secondary'
+                              : 'outline'
                           }
                           className={cn(
-                            'text-[9px] py-0 px-1.5 uppercase font-medium',
-                            item.status === 'attached' && 'border-blue-500/40 text-blue-400 bg-blue-500/10'
+                            'text-[9px] py-0 px-1.5 uppercase font-semibold',
+                            item.status === 'attached' && 'border-purple-300 text-purple-700 bg-purple-100 dark:border-purple-800 dark:text-purple-300 dark:bg-purple-950/50',
+                            item.status === 'pending' && 'border-zinc-300 text-zinc-600 bg-white dark:border-zinc-700 dark:text-zinc-300 dark:bg-zinc-800'
                           )}
                         >
                           {item.status}
                         </Badge>
 
                         {docTarget === 'compliance' ? (
-                          <span className="text-[10px] text-zinc-400 flex items-center gap-1">
-                            <ShieldCheck className="h-3 w-3 text-emerald-400" /> Mode A: Vault
+                          <span className="text-[10px] text-zinc-500 dark:text-zinc-400 flex items-center gap-1 font-medium">
+                            <ShieldCheck className="h-3 w-3 text-purple-600 dark:text-purple-400" /> Mode A: Vault
                           </span>
                         ) : docTarget ? (
-                          <span className="text-[10px] text-zinc-400 flex items-center gap-1">
-                            <Sparkles className="h-3 w-3 text-cyan-400" /> Mode B: AI
+                          <span className="text-[10px] text-zinc-500 dark:text-zinc-400 flex items-center gap-1 font-medium">
+                            <Sparkles className="h-3 w-3 text-purple-600 dark:text-purple-400" /> Mode B: AI
                           </span>
                         ) : null}
                       </div>
@@ -209,7 +207,7 @@ export function ApplicationChecklistCard({
                         size="sm"
                         variant="ghost"
                         onClick={onScrollToCompliance}
-                        className="h-7 px-2 text-[11px] text-zinc-400 hover:text-emerald-300 hover:bg-emerald-950/30"
+                        className="h-7 px-2.5 text-[11px] font-medium text-purple-600 hover:text-purple-700 hover:bg-purple-100 dark:text-purple-400 dark:hover:bg-purple-950/50"
                       >
                         Vault <ArrowRight className="h-3 w-3 ml-1" />
                       </Button>
@@ -218,7 +216,7 @@ export function ApplicationChecklistCard({
                         size="sm"
                         variant="ghost"
                         onClick={() => onSelectDocType(docTarget)}
-                        className="h-7 px-2 text-[11px] text-zinc-400 hover:text-cyan-300 hover:bg-cyan-950/30"
+                        className="h-7 px-2.5 text-[11px] font-medium text-purple-600 hover:text-purple-700 hover:bg-purple-100 dark:text-purple-400 dark:hover:bg-purple-950/50"
                       >
                         Draft <ArrowRight className="h-3 w-3 ml-1" />
                       </Button>

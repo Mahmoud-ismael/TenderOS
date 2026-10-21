@@ -137,19 +137,19 @@ export function DiscoveryInbox({
     switch (source) {
       case 'ifmis':
         return (
-          <Badge variant="outline" className="border-blue-500/30 text-blue-400 bg-blue-500/10 text-[10px]">
+          <Badge variant="outline" className="border-zinc-300 text-zinc-700 bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:bg-zinc-800 text-[10px]">
             PPIP / IFMIS
           </Badge>
         );
       case 'agpo_portal':
         return (
-          <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 bg-emerald-500/10 text-[10px]">
+          <Badge variant="outline" className="border-purple-200 text-purple-700 bg-purple-50 dark:border-purple-800 dark:text-purple-300 dark:bg-purple-950/40 text-[10px]">
             AGPO Portal
           </Badge>
         );
       case 'mygov':
         return (
-          <Badge variant="outline" className="border-purple-500/30 text-purple-400 bg-purple-500/10 text-[10px]">
+          <Badge variant="outline" className="border-zinc-300 text-zinc-700 bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:bg-zinc-800 text-[10px]">
             MyGov
           </Badge>
         );
@@ -184,7 +184,7 @@ export function DiscoveryInbox({
     }
     if (diffDays <= 7) {
       return (
-        <span className="flex items-center gap-1 font-semibold text-amber-700 dark:text-amber-400 text-xs">
+        <span className="flex items-center gap-1 font-semibold text-purple-700 dark:text-purple-400 text-xs">
           <Clock className="h-3.5 w-3.5" /> Closes in {diffDays}d ({deadline.toLocaleDateString()})
         </span>
       );
@@ -214,25 +214,25 @@ export function DiscoveryInbox({
             variant="outline"
             size="sm"
             onClick={() => setIsAuditModalOpen(true)}
-            className="border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 text-xs h-9 shadow-sm"
+            className="border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 text-xs h-9 shadow-xs"
           >
-            <Activity className="h-3.5 w-3.5 mr-1.5 text-emerald-600 dark:text-emerald-400" /> Scraper Status
+            <Activity className="h-3.5 w-3.5 mr-1.5 text-zinc-500 dark:text-zinc-400" /> Scraper Status
           </Button>
 
           <Button
             variant="outline"
             size="sm"
             onClick={() => setIsImportModalOpen(true)}
-            className="border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 hover:border-violet-500/50 text-xs h-9 shadow-sm"
+            className="border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 hover:border-purple-500/50 text-xs h-9 shadow-xs"
           >
-            <FileSpreadsheet className="h-3.5 w-3.5 mr-1.5 text-violet-600 dark:text-violet-400" /> Import Excel / CSV
+            <FileSpreadsheet className="h-3.5 w-3.5 mr-1.5 text-purple-600 dark:text-purple-400" /> Import Excel / CSV
           </Button>
 
           <Button
             variant="outline"
             size="sm"
             onClick={() => setIsManualModalOpen(true)}
-            className="border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 text-xs h-9 shadow-sm"
+            className="border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 text-xs h-9 shadow-xs"
           >
             <PlusCircle className="h-3.5 w-3.5 mr-1.5 text-zinc-500 dark:text-zinc-400" /> Manual Add
           </Button>
@@ -241,7 +241,7 @@ export function DiscoveryInbox({
             size="sm"
             onClick={handleRunScraper}
             disabled={isScraping}
-            className="bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200 text-xs h-9 shadow-sm"
+            className="bg-purple-600 text-white hover:bg-purple-700 text-xs h-9 shadow-xs font-medium"
           >
             <RefreshCw className={cn('h-3.5 w-3.5 mr-1.5', isScraping && 'animate-spin')} />
             {isScraping ? 'Scraping Portals...' : 'Run Scraper Now'}
@@ -250,40 +250,58 @@ export function DiscoveryInbox({
       </div>
 
       {scrapeFeedback && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-700 dark:text-emerald-300 animate-in fade-in">
+        <div className="rounded-lg border border-purple-200 bg-purple-50 p-3 text-xs text-purple-900 dark:border-purple-900/50 dark:bg-purple-950/20 dark:text-purple-300 animate-in fade-in">
           {scrapeFeedback}
         </div>
       )}
 
+      {/* Workflow Step Guidance Banner */}
+      <div className="flex items-center justify-between rounded-xl border border-purple-200 dark:border-purple-900/40 bg-purple-50/60 dark:bg-purple-950/20 p-3.5 text-xs text-zinc-800 dark:text-zinc-200 shadow-2xs">
+        <div className="flex items-center gap-2.5">
+          <span className="rounded-full bg-purple-600 text-white font-mono font-bold text-[10px] px-2 py-0.5 shrink-0">
+            STEP 1 OF 4
+          </span>
+          <p className="leading-relaxed">
+            <strong>Capture Opportunities:</strong> Review newly scraped notices from IFMIS, PPIP, and AGPO. Click <strong className="text-purple-700 dark:text-purple-300">&quot;Qualify&quot;</strong> on any tender to evaluate requirements with Vertex AI.
+          </p>
+        </div>
+        <Link
+          href="/qualification"
+          className="shrink-0 text-purple-700 dark:text-purple-400 font-semibold hover:underline hidden md:inline-flex items-center gap-1"
+        >
+          Next: Qualification &rarr;
+        </Link>
+      </div>
+
       {/* Metrics Header Cards */}
       <div className="grid gap-3 sm:grid-cols-4">
-        <Card className="border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#14151b] p-4">
-          <span className="text-xs text-zinc-600 dark:text-zinc-300 font-medium">Discovered Tenders</span>
+        <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 p-4">
+          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">Discovered Tenders</span>
           <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">{metrics.totalDiscovered}</div>
           <span className="text-[11px] text-zinc-500 dark:text-zinc-400">Awaiting qualification review</span>
         </Card>
 
-        <Card className="border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#14151b] p-4">
-          <span className="text-xs text-amber-700 dark:text-amber-400 font-medium">Closing in &lt; 7 Days</span>
-          <div className="text-2xl font-bold text-amber-700 dark:text-amber-400 mt-1">{metrics.closingSoonCount}</div>
+        <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 p-4">
+          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">Closing in &lt; 7 Days</span>
+          <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">{metrics.closingSoonCount}</div>
           <span className="text-[11px] text-zinc-500 dark:text-zinc-400">High-priority deadlines</span>
         </Card>
 
-        <Card className="border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#14151b] p-4">
-          <span className="text-xs text-emerald-700 dark:text-emerald-400 font-medium">AGPO Reserved</span>
-          <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-1">{metrics.agpoCount}</div>
+        <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 p-4">
+          <span className="text-xs text-purple-600 dark:text-purple-400 font-medium">AGPO Reserved</span>
+          <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mt-1">{metrics.agpoCount}</div>
           <span className="text-[11px] text-zinc-500 dark:text-zinc-400">Youth affirmative opportunities</span>
         </Card>
 
-        <Card className="border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#14151b] p-4">
-          <span className="text-xs text-zinc-600 dark:text-zinc-300 font-medium">Automated Pipeline</span>
+        <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 p-4">
+          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">Automated Pipeline</span>
           <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">Daily 06:00</div>
           <span className="text-[11px] text-zinc-500 dark:text-zinc-400">Cron `/api/cron/discover-tenders`</span>
         </Card>
       </div>
 
       {/* Filters & Search Toolbar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#14151b] p-3">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 p-3">
         <div className="flex flex-1 items-center space-x-2">
           <div className="relative flex-1 max-w-sm">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-400 dark:text-zinc-500" />
@@ -291,14 +309,14 @@ export function DiscoveryInbox({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search title, procuring entity, or reference..."
-              className="pl-8 border-zinc-300 bg-zinc-50 text-zinc-900 placeholder:text-zinc-400 focus:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:placeholder:text-zinc-500 text-xs h-9"
+              className="pl-8 border-zinc-300 bg-white text-zinc-900 placeholder:text-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:placeholder:text-zinc-500 text-xs h-9"
             />
           </div>
 
           <select
             value={sourceFilter}
             onChange={(e) => setSourceFilter(e.target.value)}
-            className="h-9 rounded-md border border-zinc-300 bg-zinc-50 px-2.5 text-xs text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 focus-visible:outline-none"
+            className="h-9 rounded-md border border-zinc-300 bg-white px-2.5 text-xs text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 focus-visible:outline-none"
           >
             <option value="all">All Sources ({tenders.length})</option>
             <option value="ifmis">IFMIS / PPIP ({metrics.sourcesCount.ifmis})</option>
@@ -310,7 +328,7 @@ export function DiscoveryInbox({
           <select
             value={deadlineFilter}
             onChange={(e) => setDeadlineFilter(e.target.value)}
-            className="h-9 rounded-md border border-zinc-300 bg-zinc-50 px-2.5 text-xs text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 focus-visible:outline-none"
+            className="h-9 rounded-md border border-zinc-300 bg-white px-2.5 text-xs text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 focus-visible:outline-none"
           >
             <option value="all">All Deadlines</option>
             <option value="urgent_7d">Closing &lt; 7 Days</option>
@@ -327,7 +345,7 @@ export function DiscoveryInbox({
           <Button
             size="sm"
             onClick={handleQualifyAll}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs h-9 shadow-sm"
+            className="bg-purple-600 hover:bg-purple-700 text-white text-xs h-9 shadow-xs font-medium"
           >
             <Sparkles className="h-3.5 w-3.5 mr-1.5" /> Qualify All New
           </Button>
@@ -335,7 +353,7 @@ export function DiscoveryInbox({
       </div>
 
       {/* Discovered Tenders Table */}
-      <Card className="border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900/30 overflow-hidden">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 overflow-hidden">
         {filteredTenders.length === 0 ? (
           <div className="flex h-64 flex-col items-center justify-center text-center p-6 space-y-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
@@ -422,7 +440,7 @@ export function DiscoveryInbox({
 
                         <Link
                           href={`/qualification?tenderId=${tender.id}`}
-                          className="inline-flex items-center rounded-md bg-emerald-600/90 hover:bg-emerald-500 px-2.5 py-1 text-[11px] font-medium text-white transition-colors shadow-sm"
+                          className="inline-flex items-center rounded-md bg-purple-600 hover:bg-purple-700 px-2.5 py-1 text-[11px] font-medium text-white transition-colors shadow-xs"
                         >
                           <Sparkles className="h-3 w-3 mr-1" /> Qualify
                         </Link>

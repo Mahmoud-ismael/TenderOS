@@ -27,8 +27,8 @@ export function ComplianceHealthCard({
   const isWarning = report.overallStatus === 'warning';
 
   return (
-    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] shadow-sm flex flex-col justify-between">
-      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800/80">
+    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-col justify-between">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
             <div
@@ -150,10 +150,10 @@ export function ComplianceHealthCard({
         <div className="pt-1">
           <Link
             href="/company-profile"
-            className="w-full inline-flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#0f1015] dark:hover:bg-zinc-800 px-3 py-2 text-xs font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white transition-colors gap-1.5 shadow-sm"
+            className="w-full inline-flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:border-purple-300 dark:hover:border-purple-800 px-3 py-2 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors gap-1.5 shadow-2xs"
           >
-            <span>Review Statutory Documents & AGPO Category</span>
-            <ArrowRight className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-400" />
+            <span>Review Statutory Documents &amp; AGPO Category</span>
+            <ArrowRight className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" />
           </Link>
         </div>
       </CardContent>

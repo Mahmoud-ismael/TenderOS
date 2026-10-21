@@ -153,12 +153,12 @@ export function SettingsForm({
   return (
     <div className="space-y-6">
       {saveFeedback && (
-        <div className="rounded-lg border border-cyan-500/30 bg-cyan-950/20 p-3 text-xs text-cyan-300 flex items-center justify-between">
-          <span>{saveFeedback}</span>
+        <div className="rounded-lg border border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-purple-950/40 p-3 text-xs text-purple-900 dark:text-purple-200 flex items-center justify-between shadow-xs">
+          <span className="font-medium">{saveFeedback}</span>
           <button
             type="button"
             onClick={() => setSaveFeedback(null)}
-            className="text-zinc-500 hover:text-zinc-300 text-xs ml-2"
+            className="text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-purple-100 text-xs ml-2 font-medium"
           >
             Dismiss
           </button>
@@ -166,17 +166,17 @@ export function SettingsForm({
       )}
 
       {/* 1. Notification Channels */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600 border border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800">
               <Bell className="h-4 w-4" />
             </div>
             <div>
-              <CardTitle className="text-sm font-semibold text-zinc-100">
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 Notification Channels & Routing
               </CardTitle>
-              <CardDescription className="text-xs text-zinc-400">
+              <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
                 Choose where urgent tender deadlines and statutory certificate alerts get delivered.
               </CardDescription>
             </div>
@@ -186,12 +186,12 @@ export function SettingsForm({
         <CardContent className="p-4 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* In-App Toggle */}
-            <div className="flex items-center justify-between p-3 rounded-lg border border-zinc-800 bg-zinc-950/40">
+            <div className="flex items-center justify-between p-3 rounded-lg border border-zinc-200 bg-zinc-50/60 dark:border-zinc-800 dark:bg-zinc-950">
               <div className="space-y-0.5">
-                <span className="text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
-                  <Bell className="h-3.5 w-3.5 text-cyan-400" /> In-App Notification Center
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-200 flex items-center gap-1.5">
+                  <Bell className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> In-App Notification Center
                 </span>
-                <p className="text-[11px] text-zinc-400">
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                   Bell icon badge counter and floating notification drawer.
                 </p>
               </div>
@@ -200,12 +200,12 @@ export function SettingsForm({
                 onClick={() => setInAppEnabled(!inAppEnabled)}
                 className={cn(
                   'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none',
-                  inAppEnabled ? 'bg-cyan-600' : 'bg-zinc-800'
+                  inAppEnabled ? 'bg-purple-600' : 'bg-zinc-300 dark:bg-zinc-700'
                 )}
               >
                 <span
                   className={cn(
-                    'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out',
+                    'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
                     inAppEnabled ? 'translate-x-4' : 'translate-x-0'
                   )}
                 />
@@ -213,12 +213,12 @@ export function SettingsForm({
             </div>
 
             {/* Email Toggle */}
-            <div className="flex items-center justify-between p-3 rounded-lg border border-zinc-800 bg-zinc-950/40">
+            <div className="flex items-center justify-between p-3 rounded-lg border border-zinc-200 bg-zinc-50/60 dark:border-zinc-800 dark:bg-zinc-950">
               <div className="space-y-0.5">
-                <span className="text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
-                  <Mail className="h-3.5 w-3.5 text-purple-400" /> Email Notifications
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-200 flex items-center gap-1.5">
+                  <Mail className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> Email Notifications
                 </span>
-                <p className="text-[11px] text-zinc-400">
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                   Send HTML digests for approaching deadlines and expired certs.
                 </p>
               </div>
@@ -227,12 +227,12 @@ export function SettingsForm({
                 onClick={() => setEmailEnabled(!emailEnabled)}
                 className={cn(
                   'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none',
-                  emailEnabled ? 'bg-purple-600' : 'bg-zinc-800'
+                  emailEnabled ? 'bg-purple-600' : 'bg-zinc-300 dark:bg-zinc-700'
                 )}
               >
                 <span
                   className={cn(
-                    'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out',
+                    'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
                     emailEnabled ? 'translate-x-4' : 'translate-x-0'
                   )}
                 />
@@ -242,7 +242,7 @@ export function SettingsForm({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
             <div>
-              <label className="text-xs font-medium text-zinc-300 block mb-1">
+              <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block mb-1">
                 Operator Notification Email
               </label>
               <Input
@@ -250,12 +250,12 @@ export function SettingsForm({
                 value={notificationEmail}
                 onChange={(e) => setNotificationEmail(e.target.value)}
                 placeholder="e.g. tenders@hisako.co.ke"
-                className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-200"
+                className="h-9 text-xs bg-white dark:bg-zinc-950 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
               />
             </div>
 
             <div>
-              <label className="text-xs font-medium text-zinc-300 block mb-1">
+              <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block mb-1">
                 Resend API Key (Optional for production email dispatch)
               </label>
               <Input
@@ -263,7 +263,7 @@ export function SettingsForm({
                 value={resendApiKey}
                 onChange={(e) => setResendApiKey(e.target.value)}
                 placeholder="re_xxxxxxxxxxxx"
-                className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-200 font-mono"
+                className="h-9 text-xs bg-white dark:bg-zinc-950 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 font-mono focus-visible:ring-purple-500"
               />
             </div>
           </div>
@@ -271,17 +271,17 @@ export function SettingsForm({
       </Card>
 
       {/* 2. Notification Thresholds */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/30">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600 border border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800">
               <Sliders className="h-4 w-4" />
             </div>
             <div>
-              <CardTitle className="text-sm font-semibold text-zinc-100">
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 Alert Timing & Cutoff Thresholds
               </CardTitle>
-              <CardDescription className="text-xs text-zinc-400">
+              <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
                 Trigger alerts when deadlines or certificate expiries enter critical notice windows.
               </CardDescription>
             </div>
@@ -290,7 +290,7 @@ export function SettingsForm({
 
         <CardContent className="p-4 space-y-4">
           <div className="space-y-2">
-            <label className="text-xs font-medium text-zinc-300 block">
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block">
               Tender Submission Deadline Alerts (Days Before Closing):
             </label>
             <div className="flex flex-wrap items-center gap-2">
@@ -304,8 +304,8 @@ export function SettingsForm({
                     className={cn(
                       'px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
                       isSelected
-                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm'
-                        : 'bg-zinc-950/60 text-zinc-500 border-zinc-800 hover:text-zinc-300'
+                        ? 'bg-purple-600 text-white border-purple-600 shadow-xs'
+                        : 'bg-zinc-50 dark:bg-zinc-950 text-zinc-700 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-200'
                     )}
                   >
                     {day} Day{day > 1 ? 's' : ''} Prior
@@ -315,8 +315,8 @@ export function SettingsForm({
             </div>
           </div>
 
-          <div className="space-y-2 pt-2 border-t border-zinc-800/60">
-            <label className="text-xs font-medium text-zinc-300 block">
+          <div className="space-y-2 pt-3 border-t border-zinc-100 dark:border-zinc-800">
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block">
               Statutory Compliance Cert Expiry Alerts (Days Before Expiry):
             </label>
             <div className="flex flex-wrap items-center gap-2">
@@ -330,8 +330,8 @@ export function SettingsForm({
                     className={cn(
                       'px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
                       isSelected
-                        ? 'bg-red-500/20 text-red-300 border-red-500/40 shadow-sm'
-                        : 'bg-zinc-950/60 text-zinc-500 border-zinc-800 hover:text-zinc-300'
+                        ? 'bg-purple-600 text-white border-purple-600 shadow-xs'
+                        : 'bg-zinc-50 dark:bg-zinc-950 text-zinc-700 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-200'
                     )}
                   >
                     {day} Day{day > 1 ? 's' : ''} Prior
@@ -344,17 +344,17 @@ export function SettingsForm({
       </Card>
 
       {/* 3. Automated Discovery & Qualification Pipeline */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600 border border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800">
               <Zap className="h-4 w-4" />
             </div>
             <div>
-              <CardTitle className="text-sm font-semibold text-zinc-100">
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 Automated Discovery & Qualification Pipeline
               </CardTitle>
-              <CardDescription className="text-xs text-zinc-400">
+              <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
                 Chains national tender portal scraping directly into Vertex AI (Gemini 2.5 Flash) qualification so you only review high-value bids.
               </CardDescription>
             </div>
@@ -362,12 +362,12 @@ export function SettingsForm({
         </CardHeader>
 
         <CardContent className="p-4 space-y-4">
-          <div className="flex items-center justify-between p-3.5 rounded-lg border border-emerald-500/20 bg-emerald-950/10">
+          <div className="flex items-center justify-between p-3.5 rounded-lg border border-purple-200 bg-purple-50/50 dark:border-purple-800/40 dark:bg-purple-950/20">
             <div className="space-y-0.5 max-w-lg">
-              <span className="text-xs font-semibold text-emerald-300 flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5" /> Auto-Qualify Discovered Tenders
+              <span className="text-xs font-semibold text-purple-900 dark:text-purple-300 flex items-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> Auto-Qualify Discovered Tenders
               </span>
-              <p className="text-[11px] text-zinc-400 leading-relaxed">
+              <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 When enabled, the daily discovery cron immediately runs Vertex AI Gemini qualification on all newly discovered tenders. Tenders scoring below your threshold or marked &quot;Skip&quot; are automatically archived, leaving only actionable &quot;Pursue&quot; opportunities for your approval.
               </p>
             </div>
@@ -377,12 +377,12 @@ export function SettingsForm({
               onClick={() => setAutoQualify(!autoQualify)}
               className={cn(
                 'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none',
-                autoQualify ? 'bg-emerald-600' : 'bg-zinc-800'
+                autoQualify ? 'bg-purple-600' : 'bg-zinc-300 dark:bg-zinc-700'
               )}
             >
               <span
                 className={cn(
-                  'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out',
+                  'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
                   autoQualify ? 'translate-x-4' : 'translate-x-0'
                 )}
               />
@@ -390,7 +390,7 @@ export function SettingsForm({
           </div>
 
           <div className="max-w-xs">
-            <label className="text-xs font-medium text-zinc-300 block mb-1">
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block mb-1">
               Minimum AI Score to Trigger Notification (0–100)
             </label>
             <div className="flex items-center space-x-2">
@@ -400,7 +400,7 @@ export function SettingsForm({
                 max={100}
                 value={minScore}
                 onChange={(e) => setMinScore(Number(e.target.value))}
-                className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-200 w-24"
+                className="h-9 text-xs bg-white dark:bg-zinc-950 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 w-24 focus-visible:ring-purple-500"
               />
               <span className="text-xs text-zinc-500">
                 (Tenders scoring ≥ {minScore} generate high-priority review notifications)
@@ -416,7 +416,7 @@ export function SettingsForm({
           size="sm"
           onClick={handleSave}
           disabled={isSaving}
-          className="bg-cyan-600 hover:bg-cyan-500 text-white text-xs h-9 px-4"
+          className="bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs h-9 px-4 shadow-xs"
         >
           {isSaving ? (
             <>
@@ -431,13 +431,13 @@ export function SettingsForm({
       </div>
 
       {/* 4. Manual Diagnostics & Cron Test Runner */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="p-4 pb-3 border-b border-zinc-800/60">
-          <CardTitle className="text-sm font-semibold text-zinc-100 flex items-center gap-2">
-            <RotateCcw className="h-4 w-4 text-zinc-400" />
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="p-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
+          <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <RotateCcw className="h-4 w-4 text-purple-600 dark:text-purple-400" />
             Manual Diagnostics & Cron Trigger
           </CardTitle>
-          <CardDescription className="text-xs text-zinc-400">
+          <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
             Execute background scan engines on-demand to test notification routing or verify cron endpoints.
           </CardDescription>
         </CardHeader>
@@ -449,7 +449,7 @@ export function SettingsForm({
               variant="outline"
               onClick={handleRunDeadlineScan}
               disabled={isRunningScan}
-              className="h-8 text-xs border-zinc-800 text-zinc-300 hover:text-zinc-100"
+              className="h-9 text-xs border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium"
             >
               {isRunningScan ? (
                 <>
@@ -457,7 +457,7 @@ export function SettingsForm({
                 </>
               ) : (
                 <>
-                  <Play className="h-3.5 w-3.5 mr-1.5 text-amber-400" /> Run Deadline & Compliance Check Now
+                  <Play className="h-3.5 w-3.5 mr-1.5 text-purple-600 dark:text-purple-400" /> Run Deadline & Compliance Check Now
                 </>
               )}
             </Button>
@@ -467,7 +467,7 @@ export function SettingsForm({
               variant="outline"
               onClick={handleRunDiscoveryCron}
               disabled={isRunningDiscovery}
-              className="h-8 text-xs border-zinc-800 text-zinc-300 hover:text-zinc-100"
+              className="h-9 text-xs border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium"
             >
               {isRunningDiscovery ? (
                 <>
@@ -475,28 +475,28 @@ export function SettingsForm({
                 </>
               ) : (
                 <>
-                  <Play className="h-3.5 w-3.5 mr-1.5 text-emerald-400" /> Run Chained Discovery & Qualification Now
+                  <Play className="h-3.5 w-3.5 mr-1.5 text-purple-600 dark:text-purple-400" /> Run Chained Discovery & Qualification Now
                 </>
               )}
             </Button>
           </div>
 
           {scanResult && (
-            <div className="rounded-lg border border-amber-500/30 bg-amber-950/20 p-2.5 text-xs text-amber-300">
+            <div className="rounded-lg border border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-purple-950/40 p-2.5 text-xs text-purple-900 dark:text-purple-200">
               {scanResult}
             </div>
           )}
 
           {discoveryResult && (
-            <div className="rounded-lg border border-emerald-500/30 bg-emerald-950/20 p-2.5 text-xs text-emerald-300">
+            <div className="rounded-lg border border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-purple-950/40 p-2.5 text-xs text-purple-900 dark:text-purple-200">
               {discoveryResult}
             </div>
           )}
 
           {/* Vercel Cron Reference Box */}
-          <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-3 space-y-1.5 text-xs text-zinc-400">
-            <span className="font-semibold text-zinc-300">Vercel Cron Setup Reference (vercel.json):</span>
-            <pre className="font-mono text-[11px] leading-relaxed text-zinc-400 bg-zinc-900/60 p-2.5 rounded border border-zinc-800/80 overflow-x-auto">
+          <div className="rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 p-3 space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400">
+            <span className="font-semibold text-zinc-900 dark:text-zinc-200">Vercel Cron Setup Reference (vercel.json):</span>
+            <pre className="font-mono text-[11px] leading-relaxed text-zinc-800 dark:text-zinc-300 bg-white dark:bg-zinc-900 p-2.5 rounded border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
 {`{
   "crons": [
     {

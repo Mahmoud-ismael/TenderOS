@@ -53,27 +53,27 @@ export function CountdownBanner({
 
   if (isSubmitted) {
     return (
-      <Card className="border-emerald-500/30 bg-emerald-950/20 p-4">
+      <Card className="border-emerald-200 bg-emerald-50/50 dark:border-emerald-800/40 dark:bg-emerald-950/20 p-4 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center space-x-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500 text-white shadow-xs">
               <CheckCircle2 className="h-5 w-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-emerald-300">
+                <span className="text-sm font-semibold text-emerald-950 dark:text-emerald-300">
                   Bid Successfully Submitted
                 </span>
-                <Badge variant="success" className="text-[10px] tracking-wider uppercase">
+                <Badge variant="success" className="text-[10px] tracking-wider uppercase font-semibold">
                   Deadline Satisfied
                 </Badge>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
                 Submitted on {submittedAtIso ? new Date(submittedAtIso).toLocaleString() : 'Record Timestamped'}. Active submission clock stopped.
               </p>
             </div>
           </div>
-          <div className="text-xs text-emerald-400 font-mono bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-emerald-500/20 self-start sm:self-auto">
+          <div className="text-xs text-emerald-800 dark:text-emerald-300 font-mono bg-white dark:bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-500/20 self-start sm:self-auto shadow-xs font-semibold">
             Status: {applicationStatus.toUpperCase()}
           </div>
         </div>
@@ -87,12 +87,12 @@ export function CountdownBanner({
   return (
     <Card
       className={cn(
-        'p-4 transition-all border',
+        'p-4 transition-all border shadow-xs',
         timeLeft.isPast
-          ? 'border-red-500/40 bg-red-950/30 text-red-200'
+          ? 'border-red-200 bg-red-50 text-red-900 dark:border-red-900 dark:bg-zinc-900 dark:text-red-200'
           : isUrgent
-          ? 'border-amber-500/40 bg-amber-950/20'
-          : 'border-zinc-800 bg-zinc-900/40'
+          ? 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-zinc-900'
+          : 'border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900'
       )}
     >
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -101,10 +101,10 @@ export function CountdownBanner({
             className={cn(
               'flex h-10 w-10 items-center justify-center rounded-xl border',
               timeLeft.isPast
-                ? 'border-red-500/40 bg-red-500/10 text-red-400'
+                ? 'border-red-200 bg-red-50 text-red-600 dark:border-red-800 dark:bg-red-950/40 dark:text-red-400'
                 : isUrgent
-                ? 'border-amber-500/40 bg-amber-500/10 text-amber-400 animate-pulse'
-                : 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
+                ? 'border-amber-200 bg-amber-50 text-amber-600 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-400 animate-pulse'
+                : 'border-purple-200 bg-purple-50 text-purple-600 dark:border-purple-800 dark:bg-purple-950/40 dark:text-purple-400'
             )}
           >
             {timeLeft.isPast ? (
@@ -118,12 +118,12 @@ export function CountdownBanner({
 
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-zinc-100">
+              <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 Official Submission Deadline Countdown
               </span>
               <Badge
                 variant={timeLeft.isPast ? 'destructive' : isUrgent ? 'warning' : 'outline'}
-                className="text-[10px] tracking-wider uppercase"
+                className="text-[10px] tracking-wider uppercase font-semibold"
               >
                 {timeLeft.isPast
                   ? 'Expired / Disqualifying'
@@ -132,7 +132,7 @@ export function CountdownBanner({
                   : 'Active Window'}
               </Badge>
             </div>
-            <p className="text-xs text-zinc-400 mt-0.5">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Deadline: {new Date(deadlineIso).toLocaleString()} · Late submission results in automatic rejection under PPADA § 77(1).
             </p>
           </div>
@@ -141,34 +141,34 @@ export function CountdownBanner({
         {/* Live Countdown Digits */}
         {!timeLeft.isPast ? (
           <div className="flex items-center space-x-2 font-mono">
-            <div className="flex flex-col items-center bg-zinc-950/80 border border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px]">
-              <span className="text-base font-bold text-zinc-100">{timeLeft.days}</span>
-              <span className="text-[9px] text-zinc-500 uppercase">Days</span>
+            <div className="flex flex-col items-center bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px] shadow-xs">
+              <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">{timeLeft.days}</span>
+              <span className="text-[9px] text-zinc-500 uppercase font-medium">Days</span>
             </div>
-            <span className="text-zinc-500 font-bold">:</span>
-            <div className="flex flex-col items-center bg-zinc-950/80 border border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px]">
-              <span className="text-base font-bold text-zinc-100">
+            <span className="text-zinc-400 font-bold">:</span>
+            <div className="flex flex-col items-center bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px] shadow-xs">
+              <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">
                 {String(timeLeft.hours).padStart(2, '0')}
               </span>
-              <span className="text-[9px] text-zinc-500 uppercase">Hours</span>
+              <span className="text-[9px] text-zinc-500 uppercase font-medium">Hours</span>
             </div>
-            <span className="text-zinc-500 font-bold">:</span>
-            <div className="flex flex-col items-center bg-zinc-950/80 border border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px]">
-              <span className="text-base font-bold text-zinc-100">
+            <span className="text-zinc-400 font-bold">:</span>
+            <div className="flex flex-col items-center bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px] shadow-xs">
+              <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">
                 {String(timeLeft.minutes).padStart(2, '0')}
               </span>
-              <span className="text-[9px] text-zinc-500 uppercase">Mins</span>
+              <span className="text-[9px] text-zinc-500 uppercase font-medium">Mins</span>
             </div>
-            <span className="text-zinc-500 font-bold">:</span>
-            <div className="flex flex-col items-center bg-zinc-950/80 border border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px]">
-              <span className="text-base font-bold text-cyan-400">
+            <span className="text-zinc-400 font-bold">:</span>
+            <div className="flex flex-col items-center bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg px-2.5 py-1 min-w-[50px] shadow-xs">
+              <span className="text-base font-bold text-purple-600 dark:text-purple-400">
                 {String(timeLeft.seconds).padStart(2, '0')}
               </span>
-              <span className="text-[9px] text-zinc-500 uppercase">Secs</span>
+              <span className="text-[9px] text-zinc-500 uppercase font-medium">Secs</span>
             </div>
           </div>
         ) : (
-          <div className="text-xs font-semibold text-red-400 bg-red-950/80 border border-red-500/30 px-3 py-1.5 rounded-lg">
+          <div className="text-xs font-semibold text-red-600 bg-red-50 border border-red-200 dark:text-red-300 dark:bg-red-950/80 dark:border-red-500/30 px-3 py-1.5 rounded-lg shadow-xs">
             Deadline Passed
           </div>
         )}

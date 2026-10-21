@@ -224,7 +224,7 @@ export function QualificationCard({
             <div className="rounded-lg bg-zinc-50 dark:bg-zinc-950/70 p-3.5 border border-zinc-200 dark:border-zinc-800/80 space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-semibold text-zinc-800 dark:text-zinc-200 flex items-center gap-1.5">
-                  <Sparkles className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" /> Google Vertex AI (Gemini 2.5 Flash) Assessment
+                  <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> Google Vertex AI (Gemini 2.5 Flash) Assessment
                 </span>
                 <button
                   type="button"
@@ -250,7 +250,7 @@ export function QualificationCard({
 
             {/* Matched Services & Gaps Grid */}
             <div className="grid gap-3 sm:grid-cols-2 text-xs">
-              {/* Matched Services */}
+              {/* Matched Capabilities */}
               <div className="space-y-1.5">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
                   <FileCheck2 className="h-3.5 w-3.5" /> Matched Capabilities:
@@ -298,7 +298,7 @@ export function QualificationCard({
               size="sm"
               onClick={handleQualify}
               disabled={isQualifying}
-              className="bg-violet-600 hover:bg-violet-500 text-white text-xs h-8 ml-4 shrink-0 shadow-sm"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs h-8 ml-4 shrink-0 shadow-xs"
             >
               {isQualifying ? (
                 <>

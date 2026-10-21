@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -62,7 +63,7 @@ export function QualificationView({
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-center gap-2.5">
-            <CheckCircle2 className="h-6 w-6 text-emerald-600 dark:text-emerald-400" /> AI Qualification Engine
+            <CheckCircle2 className="h-6 w-6 text-purple-600 dark:text-purple-400" /> AI Qualification Engine
           </h1>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Automated tender assessment by Google Vertex AI (Gemini 2.5 Flash) for AGPO Youth, technical services fit, and compliance hurdles.
@@ -73,11 +74,29 @@ export function QualificationView({
           <Button
             size="sm"
             onClick={() => setIsBatchModalOpen(true)}
-            className="bg-violet-600 hover:bg-violet-500 text-white text-xs h-9 font-medium shadow-sm"
+            className="bg-purple-600 hover:bg-purple-700 text-white text-xs h-9 font-medium shadow-xs"
           >
             <Sparkles className="h-3.5 w-3.5 mr-1.5" /> Qualify All New ({metrics.pendingCount})
           </Button>
         </div>
+      </div>
+
+      {/* Workflow Step Guidance Banner */}
+      <div className="flex items-center justify-between rounded-xl border border-purple-200 dark:border-purple-900/40 bg-purple-50/60 dark:bg-purple-950/20 p-3.5 text-xs text-zinc-800 dark:text-zinc-200 shadow-2xs">
+        <div className="flex items-center gap-2.5">
+          <span className="rounded-full bg-purple-600 text-white font-mono font-bold text-[10px] px-2 py-0.5 shrink-0">
+            STEP 2 OF 4
+          </span>
+          <p className="leading-relaxed">
+            <strong>Evaluate Eligibility:</strong> Vertex AI scores each tender (0–100%) against your profile. Click <strong className="text-purple-700 dark:text-purple-300">&quot;Start Application&quot;</strong> on any qualified tender to initiate proposal drafting.
+          </p>
+        </div>
+        <Link
+          href="/documents"
+          className="shrink-0 text-purple-700 dark:text-purple-400 font-semibold hover:underline hidden md:inline-flex items-center gap-1"
+        >
+          Next: Document Studio &rarr;
+        </Link>
       </div>
 
       {/* Metric Cards Bar */}
@@ -85,12 +104,12 @@ export function QualificationView({
         <Card
           onClick={() => setFilterTab('pursue')}
           className={cn(
-            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 cursor-pointer hover:border-emerald-500/50 shadow-sm transition-colors',
-            filterTab === 'pursue' && 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 ring-1 ring-emerald-500'
+            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 cursor-pointer hover:border-emerald-500 shadow-xs transition-colors',
+            filterTab === 'pursue' && 'border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/20 ring-1 ring-emerald-500'
           )}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">Pursue (Qualified)</span>
+            <span className="text-xs text-emerald-800 dark:text-emerald-400 font-semibold">Pursue (Qualified)</span>
             <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
           </div>
           <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-1">
@@ -102,12 +121,12 @@ export function QualificationView({
         <Card
           onClick={() => setFilterTab('borderline')}
           className={cn(
-            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 cursor-pointer hover:border-amber-500/50 shadow-sm transition-colors',
-            filterTab === 'borderline' && 'border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 ring-1 ring-amber-500'
+            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 cursor-pointer hover:border-amber-500 shadow-xs transition-colors',
+            filterTab === 'borderline' && 'border-amber-600 bg-amber-50/50 dark:bg-amber-950/20 ring-1 ring-amber-500'
           )}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs text-amber-700 dark:text-amber-400 font-semibold">Borderline</span>
+            <span className="text-xs text-amber-800 dark:text-amber-400 font-semibold">Borderline</span>
             <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
           </div>
           <div className="text-2xl font-bold text-amber-700 dark:text-amber-400 mt-1">
@@ -119,15 +138,15 @@ export function QualificationView({
         <Card
           onClick={() => setFilterTab('skip')}
           className={cn(
-            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 cursor-pointer hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm transition-colors',
+            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 cursor-pointer hover:border-zinc-400 dark:hover:border-zinc-700 shadow-xs transition-colors',
             filterTab === 'skip' && 'border-zinc-400 dark:border-zinc-700 bg-zinc-100/70 dark:bg-zinc-800/40 ring-1 ring-zinc-400'
           )}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs text-zinc-600 dark:text-zinc-400 font-semibold">Skipped</span>
+            <span className="text-xs text-zinc-700 dark:text-zinc-400 font-semibold">Skipped</span>
             <XCircle className="h-4 w-4 text-zinc-500" />
           </div>
-          <div className="text-2xl font-bold text-zinc-800 dark:text-zinc-200 mt-1">
+          <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mt-1">
             {metrics.disqualifiedSkipCount}
           </div>
           <span className="text-[11px] text-zinc-500 dark:text-zinc-400">Disqualified or non-ICT</span>
@@ -136,23 +155,23 @@ export function QualificationView({
         <Card
           onClick={() => setFilterTab('pending')}
           className={cn(
-            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 cursor-pointer hover:border-violet-500/50 shadow-sm transition-colors',
-            filterTab === 'pending' && 'border-violet-500 bg-violet-50/50 dark:bg-violet-950/20 ring-1 ring-violet-500'
+            'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 cursor-pointer hover:border-purple-500 shadow-xs transition-colors',
+            filterTab === 'pending' && 'border-purple-600 bg-purple-50/50 dark:bg-purple-950/20 ring-1 ring-purple-500'
           )}
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs text-violet-700 dark:text-violet-400 font-semibold">Pending Run</span>
-            <Clock className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+            <span className="text-xs text-purple-800 dark:text-purple-400 font-semibold">Pending Run</span>
+            <Clock className="h-4 w-4 text-purple-600 dark:text-purple-400" />
           </div>
-          <div className="text-2xl font-bold text-violet-700 dark:text-violet-400 mt-1">
+          <div className="text-2xl font-bold text-purple-700 dark:text-purple-400 mt-1">
             {metrics.pendingCount}
           </div>
           <span className="text-[11px] text-zinc-500 dark:text-zinc-400">New from scrapers</span>
         </Card>
 
-        <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] p-4 shadow-sm">
+        <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-zinc-600 dark:text-zinc-300 font-semibold">Average Score</span>
+            <span className="text-xs text-zinc-700 dark:text-zinc-300 font-semibold">Average Score</span>
             <Sparkles className="h-4 w-4 text-zinc-500" />
           </div>
           <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
@@ -250,7 +269,7 @@ export function QualificationView({
       {/* Qualification Cards Stream */}
       <div className="space-y-4">
         {filteredItems.length === 0 ? (
-          <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/30 p-12 text-center shadow-sm">
+          <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-12 text-center shadow-xs">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-500">
               <CheckCircle2 className="h-6 w-6" />
             </div>

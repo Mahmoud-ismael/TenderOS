@@ -178,29 +178,29 @@ export function CompanyProfileForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Header with save button */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sticky top-16 z-10 bg-zinc-950/80 backdrop-blur py-2 border-b border-zinc-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sticky top-16 z-10 bg-white dark:bg-zinc-950 py-2 border-b border-zinc-200 dark:border-zinc-800">
         <div>
-          <h2 className="text-lg font-semibold text-zinc-100">Enterprise Profile Details</h2>
-          <p className="text-xs text-zinc-400">
+          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Enterprise Profile Details</h2>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Official company profile referenced across AI qualification & proposal drafting.
           </p>
         </div>
 
         <div className="flex items-center space-x-3">
           {saveStatus === 'success' && (
-            <span className="flex items-center text-xs text-emerald-400 font-medium">
+            <span className="flex items-center text-xs text-emerald-600 dark:text-emerald-400 font-medium">
               <CheckCircle2 className="h-4 w-4 mr-1" /> {statusMessage}
             </span>
           )}
           {saveStatus === 'error' && (
-            <span className="flex items-center text-xs text-red-400 font-medium">
+            <span className="flex items-center text-xs text-red-600 dark:text-red-400 font-medium">
               <AlertCircle className="h-4 w-4 mr-1" /> {statusMessage}
             </span>
           )}
           <Button
             type="submit"
             disabled={isSaving}
-            className="bg-zinc-100 text-zinc-950 hover:bg-zinc-200 text-xs px-4"
+            className="bg-purple-600 text-white hover:bg-purple-700 font-medium text-xs px-4 shadow-xs"
           >
             {isSaving ? (
               <>
@@ -214,61 +214,61 @@ export function CompanyProfileForm({
       </div>
 
       {/* 1. Legal & Identity Information */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-2">
-            <Building2 className="h-4 w-4 text-zinc-400" />
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <Building2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               Legal Identity & Registration
             </CardTitle>
           </div>
-          <CardDescription className="text-xs text-zinc-500">
+          <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
             Registered corporate name and legal credentials.
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 md:grid-cols-2">
+        <CardContent className="grid gap-4 md:grid-cols-2 pt-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Legal Company Name *</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Legal Company Name *</label>
             <Input
               {...register('legal_name')}
               placeholder="e.g. Hisako Tech Solutions Ltd"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
             {errors.legal_name && (
-              <p className="text-[11px] text-red-400">{errors.legal_name.message}</p>
+              <p className="text-[11px] text-red-600 dark:text-red-400 font-medium">{errors.legal_name.message}</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Registration / Incorporation Number</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Registration / Incorporation Number</label>
             <Input
               {...register('registration_number')}
               placeholder="e.g. CPR/2021/12345"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
         </CardContent>
       </Card>
 
       {/* 2. AGPO & Statutory Compliance */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-2">
-            <FileBadge className="h-4 w-4 text-emerald-400" />
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <FileBadge className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               AGPO & Kenya Revenue Authority Credentials
             </CardTitle>
           </div>
-          <CardDescription className="text-xs text-zinc-500">
+          <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
             Affirmative Action procurement status and KRA tax standing.
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 md:grid-cols-3">
+        <CardContent className="grid gap-4 md:grid-cols-3 pt-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">AGPO Category</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">AGPO Category</label>
             <select
               {...register('agpo_category')}
-              className="flex h-9 w-full rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1 text-xs text-zinc-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-700"
+              className="flex h-9 w-full rounded-md border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-3 py-1 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-purple-500"
             >
               <option value="Youth">Youth (30% Reservation)</option>
               <option value="Women">Women</option>
@@ -277,78 +277,78 @@ export function CompanyProfileForm({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">AGPO Certificate Number</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">AGPO Certificate Number</label>
             <Input
               {...register('agpo_cert_number')}
               placeholder="e.g. AGPO/Y/2024/09876"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">AGPO Expiry Date</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">AGPO Expiry Date</label>
             <Input
               type="date"
               {...register('agpo_cert_expiry')}
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">KRA PIN</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">KRA PIN</label>
             <Input
               {...register('kra_pin')}
               placeholder="e.g. P051234567Z"
-              className="border-zinc-800 bg-zinc-950 text-xs uppercase"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs uppercase text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Tax Compliance Certificate (TCC) #</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Tax Compliance Certificate (TCC) #</label>
             <Input
               {...register('tax_compliance_cert_number')}
               placeholder="e.g. KRA/TCC/2026/0129"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">TCC Expiry Date</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">TCC Expiry Date</label>
             <Input
               type="date"
               {...register('tax_compliance_cert_expiry')}
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
         </CardContent>
       </Card>
 
       {/* 3. Core Services Tags */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-2">
-            <Briefcase className="h-4 w-4 text-violet-400" />
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <Briefcase className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               Core Capabilities & Services
             </CardTitle>
           </div>
-          <CardDescription className="text-xs text-zinc-500">
+          <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
             Primary service domains used by the AI model router to match tender requirements.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-3 pt-4">
           <div className="flex flex-wrap gap-2">
             {coreServices.map((service) => (
               <Badge
                 key={service}
                 variant="secondary"
-                className="bg-zinc-800 text-zinc-200 hover:bg-zinc-700/80 px-2.5 py-1 text-xs gap-1.5"
+                className="bg-purple-50 text-purple-900 border border-purple-200 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-800 px-2.5 py-1 text-xs gap-1.5 font-medium shadow-xs"
               >
                 <span>{service}</span>
                 <button
                   type="button"
                   onClick={() => handleRemoveService(service)}
-                  className="text-zinc-400 hover:text-zinc-100"
+                  className="text-purple-600 hover:text-purple-950 dark:text-purple-400 dark:hover:text-purple-100"
                 >
                   ×
                 </button>
@@ -362,14 +362,14 @@ export function CompanyProfileForm({
               onChange={(e) => setNewServiceInput(e.target.value)}
               onKeyDown={handleAddService}
               placeholder="Add service (e.g. Cloud Architecture, Cybersecurity)"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={handleAddService}
-              className="border-zinc-800 text-xs"
+              className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 text-xs font-medium"
             >
               Add
             </Button>
@@ -378,127 +378,127 @@ export function CompanyProfileForm({
       </Card>
 
       {/* 4. Bank Details for Bid Bonds */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-2">
-            <CreditCard className="h-4 w-4 text-blue-400" />
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <CreditCard className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               Bank Details & Bid Bond Information
             </CardTitle>
           </div>
-          <CardDescription className="text-xs text-zinc-500">
+          <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
             Account data used to prepare bank guarantee requests and formal tender documents.
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 md:grid-cols-3">
+        <CardContent className="grid gap-4 md:grid-cols-3 pt-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Bank Name</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Bank Name</label>
             <Input
               {...register('bank_details.bank_name')}
               placeholder="e.g. KCB Bank Kenya"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Branch</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Branch</label>
             <Input
               {...register('bank_details.branch')}
               placeholder="e.g. Kilimani Branch"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Account Name</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Account Name</label>
             <Input
               {...register('bank_details.account_name')}
               placeholder="e.g. Hisako Tech Solutions Ltd"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Account Number</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Account Number</label>
             <Input
               {...register('bank_details.account_number')}
               placeholder="e.g. 1234567890"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">SWIFT / BIC Code</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">SWIFT / BIC Code</label>
             <Input
               {...register('bank_details.swift_code')}
               placeholder="e.g. KCBLKENX"
-              className="border-zinc-800 bg-zinc-950 text-xs uppercase"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs uppercase text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
         </CardContent>
       </Card>
 
       {/* 5. Physical & Contact Details */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center space-x-2">
-            <MapPin className="h-4 w-4 text-zinc-400" />
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <MapPin className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               Address & Contact Details
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="grid gap-4 md:grid-cols-2">
+        <CardContent className="grid gap-4 md:grid-cols-2 pt-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Physical Address</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Physical Address</label>
             <Input
               {...register('physical_address')}
               placeholder="e.g. 4th Floor, Plaza 2000, Mombasa Road, Nairobi"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Postal Address</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Postal Address</label>
             <Input
               {...register('postal_address')}
               placeholder="e.g. P.O. Box 10293 - 00100, Nairobi"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Official Tender Email</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Official Tender Email</label>
             <Input
               type="email"
               {...register('contact_email')}
               placeholder="e.g. tenders@hisako.co.ke"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-zinc-300">Contact Telephone</label>
+            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Contact Telephone</label>
             <Input
               {...register('contact_phone')}
               placeholder="e.g. +254 712 345678"
-              className="border-zinc-800 bg-zinc-950 text-xs"
+              className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100 focus-visible:ring-purple-500"
             />
           </div>
         </CardContent>
       </Card>
 
       {/* 6. Past Projects History */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3 flex flex-row items-center justify-between">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800 flex flex-row items-center justify-between">
           <div>
             <div className="flex items-center space-x-2">
-              <History className="h-4 w-4 text-zinc-400" />
-              <CardTitle className="text-sm font-semibold text-zinc-200">
+              <History className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 Past Project History & References
               </CardTitle>
             </div>
-            <CardDescription className="text-xs text-zinc-500 mt-0.5">
+            <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Similar assignments cited to satisfy technical qualification criteria.
             </CardDescription>
           </div>
@@ -514,56 +514,56 @@ export function CompanyProfileForm({
                 description: '',
               })
             }
-            className="border-zinc-800 text-xs"
+            className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 text-xs font-medium"
           >
             <Plus className="h-3.5 w-3.5 mr-1" /> Add Project
           </Button>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-3 pt-4">
           {projectFields.length === 0 ? (
-            <p className="text-xs text-zinc-500 py-3 text-center border border-dashed border-zinc-800/80 rounded-lg">
+            <p className="text-xs text-zinc-500 py-3 text-center border border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg">
               No past projects added yet. Click &quot;Add Project&quot; to build your portfolio.
             </p>
           ) : (
             projectFields.map((field, idx) => (
               <div
                 key={field.id}
-                className="grid gap-3 p-3 rounded-lg border border-zinc-800/80 bg-zinc-950/60 md:grid-cols-4 items-start"
+                className="grid gap-3 p-3 rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 shadow-xs md:grid-cols-4 items-start"
               >
                 <div className="space-y-1">
-                  <label className="text-[11px] text-zinc-400">Client / Organization</label>
+                  <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Client / Organization</label>
                   <Input
                     {...register(`past_projects.${idx}.client` as const)}
                     placeholder="e.g. Ministry of ICT"
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] text-zinc-400">Contract Value (KES)</label>
+                  <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Contract Value (KES)</label>
                   <Input
                     {...register(`past_projects.${idx}.value` as const)}
                     placeholder="e.g. 4,500,000"
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] text-zinc-400">Year</label>
+                  <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Year</label>
                   <Input
                     {...register(`past_projects.${idx}.year` as const)}
                     placeholder="2025"
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1 flex items-end gap-2">
                   <div className="flex-1">
-                    <label className="text-[11px] text-zinc-400">Scope / Brief Description</label>
+                    <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Scope / Brief Description</label>
                     <Input
                       {...register(`past_projects.${idx}.description` as const)}
                       placeholder="e.g. Web portal and ERP integration"
-                      className="border-zinc-800 bg-zinc-950 text-xs"
+                      className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                     />
                   </div>
                   <Button
@@ -571,7 +571,7 @@ export function CompanyProfileForm({
                     variant="ghost"
                     size="sm"
                     onClick={() => removeProject(idx)}
-                    className="text-zinc-500 hover:text-red-400 p-2 h-9"
+                    className="text-zinc-400 hover:text-red-600 dark:hover:text-red-400 p-2 h-9"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -583,16 +583,16 @@ export function CompanyProfileForm({
       </Card>
 
       {/* 7. Key Personnel */}
-      <Card className="border-zinc-800 bg-zinc-900/40">
-        <CardHeader className="pb-3 flex flex-row items-center justify-between">
+      <Card className="border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900">
+        <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800 flex flex-row items-center justify-between">
           <div>
             <div className="flex items-center space-x-2">
-              <Users className="h-4 w-4 text-zinc-400" />
-              <CardTitle className="text-sm font-semibold text-zinc-200">
+              <Users className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+              <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 Key Technical Personnel
               </CardTitle>
             </div>
-            <CardDescription className="text-xs text-zinc-500 mt-0.5">
+            <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Staff profiles matching technical proposal staffing requirements.
             </CardDescription>
           </div>
@@ -608,56 +608,56 @@ export function CompanyProfileForm({
                 cv_url: '',
               })
             }
-            className="border-zinc-800 text-xs"
+            className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 text-xs font-medium"
           >
             <Plus className="h-3.5 w-3.5 mr-1" /> Add Personnel
           </Button>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-3 pt-4">
           {personnelFields.length === 0 ? (
-            <p className="text-xs text-zinc-500 py-3 text-center border border-dashed border-zinc-800/80 rounded-lg">
+            <p className="text-xs text-zinc-500 py-3 text-center border border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg">
               No technical personnel added yet. Click &quot;Add Personnel&quot; to list team leads and developers.
             </p>
           ) : (
             personnelFields.map((field, idx) => (
               <div
                 key={field.id}
-                className="grid gap-3 p-3 rounded-lg border border-zinc-800/80 bg-zinc-950/60 md:grid-cols-4 items-start"
+                className="grid gap-3 p-3 rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 shadow-xs md:grid-cols-4 items-start"
               >
                 <div className="space-y-1">
-                  <label className="text-[11px] text-zinc-400">Full Name</label>
+                  <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Full Name</label>
                   <Input
                     {...register(`key_personnel.${idx}.name` as const)}
                     placeholder="e.g. Jane Doe"
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] text-zinc-400">Role / Designation</label>
+                  <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Role / Designation</label>
                   <Input
                     {...register(`key_personnel.${idx}.role` as const)}
                     placeholder="e.g. Lead Solutions Architect"
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] text-zinc-400">Experience / Bio</label>
+                  <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">Experience / Bio</label>
                   <Input
                     {...register(`key_personnel.${idx}.bio` as const)}
                     placeholder="e.g. 7+ yrs in React, PostgreSQL, Cloud"
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1 flex items-end gap-2">
                   <div className="flex-1">
-                    <label className="text-[11px] text-zinc-400">CV URL / Attachment Link</label>
+                    <label className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">CV URL / Attachment Link</label>
                     <Input
                       {...register(`key_personnel.${idx}.cv_url` as const)}
                       placeholder="https://..."
-                      className="border-zinc-800 bg-zinc-950 text-xs"
+                      className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100"
                     />
                   </div>
                   <Button
@@ -665,7 +665,7 @@ export function CompanyProfileForm({
                     variant="ghost"
                     size="sm"
                     onClick={() => removePersonnel(idx)}
-                    className="text-zinc-500 hover:text-red-400 p-2 h-9"
+                    className="text-zinc-400 hover:text-red-600 dark:hover:text-red-400 p-2 h-9"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>

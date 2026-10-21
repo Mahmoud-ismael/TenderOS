@@ -236,8 +236,8 @@ export function DocumentsVault({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-zinc-100">Compliance Documents Vault</h2>
-          <p className="text-xs text-zinc-400">
+          <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">Compliance Documents Vault</h2>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Mandatory Kenyan procurement statutory certificates with automated Vertex AI date extraction.
           </p>
         </div>
@@ -245,24 +245,24 @@ export function DocumentsVault({
 
       {/* Confirmation Modal */}
       {pendingConfirmation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm animate-in fade-in">
-          <Card className="w-full max-w-lg border-zinc-700 bg-zinc-900 shadow-2xl">
-            <CardHeader className="pb-3 border-b border-zinc-800">
-              <div className="flex items-center space-x-2 text-violet-400">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 animate-in fade-in">
+          <Card className="w-full max-w-lg border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl">
+            <CardHeader className="pb-3 border-b border-zinc-100 dark:border-zinc-800">
+              <div className="flex items-center space-x-2 text-purple-600 dark:text-purple-400">
                 <Sparkles className="h-5 w-5" />
-                <CardTitle className="text-base text-zinc-100">
+                <CardTitle className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
                   AI Metadata Extraction Verified
                 </CardTitle>
               </div>
-              <CardDescription className="text-zinc-600 dark:text-zinc-400">
+              <CardDescription className="text-xs text-zinc-500 dark:text-zinc-400">
                 Google Vertex AI (Gemini 2.5 Flash) analyzed{' '}
-                <strong className="text-zinc-900 dark:text-zinc-200">{pendingConfirmation.file.name}</strong>.
+                <strong className="text-zinc-900 dark:text-zinc-100">{pendingConfirmation.file.name}</strong>.
                 Verify or correct extracted details before saving.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">
+                <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
                   Certificate / Registration Number
                 </label>
                 <Input
@@ -274,14 +274,14 @@ export function DocumentsVault({
                     })
                   }
                   placeholder="e.g. KRA/TCC/2026/012938"
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-zinc-300 flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5 text-zinc-400" /> Issue Date
+                  <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5 text-zinc-500" /> Issue Date
                   </label>
                   <Input
                     type="date"
@@ -292,13 +292,13 @@ export function DocumentsVault({
                         issueDate: e.target.value,
                       })
                     }
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-zinc-300 flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5 text-zinc-400" /> Expiry Date
+                  <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5 text-zinc-500" /> Expiry Date
                   </label>
                   <Input
                     type="date"
@@ -309,13 +309,13 @@ export function DocumentsVault({
                         expiryDate: e.target.value,
                       })
                     }
-                    className="border-zinc-800 bg-zinc-950 text-xs"
+                    className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-zinc-300">
+                <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
                   Notes & Issuing Entity
                 </label>
                 <Input
@@ -327,17 +327,17 @@ export function DocumentsVault({
                     })
                   }
                   placeholder="e.g. Verified from KRA Itax portal"
-                  className="border-zinc-800 bg-zinc-950 text-xs"
+                  className="border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-xs text-zinc-900 dark:text-zinc-100"
                 />
               </div>
 
-              <div className="flex items-center justify-end space-x-2 pt-3 border-t border-zinc-800">
+              <div className="flex items-center justify-end space-x-2 pt-3 border-t border-zinc-100 dark:border-zinc-800">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => setPendingConfirmation(null)}
                   disabled={isSaving}
-                  className="border-zinc-800 text-zinc-400"
+                  className="border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300"
                 >
                   Cancel
                 </Button>
@@ -345,7 +345,7 @@ export function DocumentsVault({
                   size="sm"
                   onClick={handleConfirmAndSave}
                   disabled={isSaving}
-                  className="bg-emerald-600 text-white hover:bg-emerald-500"
+                  className="bg-purple-600 text-white hover:bg-purple-700 font-medium shadow-xs"
                 >
                   {isSaving ? (
                     <>
@@ -374,8 +374,8 @@ export function DocumentsVault({
             <Card
               key={meta.type}
               className={cn(
-                'border-zinc-800 bg-zinc-900/40 transition-all duration-150',
-                isDragTarget && 'border-violet-500/80 bg-violet-950/20 shadow-lg'
+                'border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-900 transition-all duration-150',
+                isDragTarget && 'border-purple-500 bg-purple-50/50 dark:bg-purple-950/20 shadow-md'
               )}
               onDragOver={(e) => {
                 e.preventDefault();
@@ -393,7 +393,7 @@ export function DocumentsVault({
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <CardTitle className="text-sm font-semibold text-zinc-100">
+                    <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                       {meta.label}
                     </CardTitle>
                     <CardDescription className="text-xs text-zinc-500 mt-0.5">
@@ -406,11 +406,11 @@ export function DocumentsVault({
 
               <CardContent className="space-y-3 pt-0">
                 {doc && doc.file_url ? (
-                  <div className="rounded-lg border border-zinc-800/80 bg-zinc-950/60 p-3 space-y-2">
+                  <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-3 space-y-2 dark:border-zinc-800 dark:bg-zinc-950 shadow-xs">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2 truncate">
-                        <FileText className="h-4 w-4 text-zinc-400 shrink-0" />
-                        <span className="text-xs font-medium text-zinc-200 truncate">
+                        <FileText className="h-4 w-4 text-purple-600 dark:text-purple-400 shrink-0" />
+                        <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
                           {doc.file_url.split('/').pop() || 'document.pdf'}
                         </span>
                       </div>
@@ -419,14 +419,14 @@ export function DocumentsVault({
                           href={doc.file_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded p-1 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
+                          className="rounded p-1 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                           title="View Document"
                         >
                           <ExternalLink className="h-3.5 w-3.5" />
                         </a>
                         <button
                           onClick={() => handleDelete(doc.id, doc.doc_type)}
-                          className="rounded p-1 text-zinc-500 hover:text-red-400 hover:bg-zinc-800 transition-colors"
+                          className="rounded p-1 text-zinc-400 hover:text-red-600 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
                           title="Delete Document"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
@@ -434,13 +434,13 @@ export function DocumentsVault({
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 text-[11px] text-zinc-400 pt-1 border-t border-zinc-900">
+                    <div className="flex items-center gap-4 text-[11px] text-zinc-600 dark:text-zinc-400 pt-1 border-t border-zinc-200 dark:border-zinc-800">
                       <div>
-                        <span className="text-zinc-500">Issued:</span>{' '}
+                        <span className="text-zinc-500 font-medium">Issued:</span>{' '}
                         {doc.issue_date || 'N/A'}
                       </div>
                       <div>
-                        <span className="text-zinc-500">Expires:</span>{' '}
+                        <span className="text-zinc-500 font-medium">Expires:</span>{' '}
                         {doc.expiry_date || 'Perpetual / N/A'}
                       </div>
                     </div>
@@ -470,22 +470,22 @@ export function DocumentsVault({
                   <label
                     htmlFor={`file-upload-${meta.type}`}
                     className={cn(
-                      'flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-zinc-800 py-3 px-4 text-xs font-medium text-zinc-400 transition-colors hover:border-zinc-700 hover:bg-zinc-800/40 hover:text-zinc-200',
+                      'flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 py-3 px-4 text-xs font-medium text-zinc-600 dark:text-zinc-400 transition-colors hover:border-purple-400 hover:bg-purple-50/50 hover:text-purple-700 dark:hover:border-purple-600 dark:hover:bg-purple-950/20 dark:hover:text-purple-300',
                       isCurrentlyProcessing && 'pointer-events-none opacity-60'
                     )}
                   >
                     {isCurrentlyProcessing ? (
                       <>
-                        <Loader2 className="h-4 w-4 animate-spin text-violet-400" />
-                        <span className="text-violet-600 dark:text-violet-400">
+                        <Loader2 className="h-4 w-4 animate-spin text-purple-600 dark:text-purple-400" />
+                        <span className="text-purple-700 dark:text-purple-300 font-medium">
                           Extracting with Gemini on Vertex AI...
                         </span>
                       </>
                     ) : (
                       <>
-                        <UploadCloud className="h-4 w-4 text-zinc-500" />
+                        <UploadCloud className="h-4 w-4 text-zinc-400 group-hover:text-purple-600" />
                         <span>{doc ? 'Upload New Revision' : 'Drop or Select File to Upload'}</span>
-                        <span className="text-[10px] text-zinc-600">(PDF, PNG, JPG)</span>
+                        <span className="text-[10px] text-zinc-400">(PDF, PNG, JPG)</span>
                       </>
                     )}
                   </label>

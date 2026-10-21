@@ -25,18 +25,18 @@ export function WinRateStatsCard({
   const decidedCount = stats.awardedCount + stats.rejectedCount;
 
   return (
-    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] shadow-sm flex flex-col justify-between">
-      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800/80">
+    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-col justify-between">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/40">
               <Trophy className="h-4 w-4" />
             </div>
             <div>
               <CardTitle className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                 Conversion &amp; Win Rate
                 {hasHistory && (
-                  <Badge variant="outline" className="border-emerald-300 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 text-[10px]">
+                  <Badge variant="outline" className="border-purple-300 dark:border-purple-800 text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/40 text-[10px]">
                     {stats.winRate}% Success Rate
                   </Badge>
                 )}
@@ -69,7 +69,7 @@ export function WinRateStatsCard({
             <div className="pt-2">
               <Link
                 href="/qualification"
-                className="inline-flex items-center rounded-lg border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-[#0f1015] px-3 py-1.5 text-xs text-cyan-700 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-300 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors shadow-sm font-medium"
+                className="inline-flex items-center rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-3 py-1.5 text-xs text-purple-600 dark:text-purple-400 hover:text-purple-700 hover:border-purple-300 transition-colors shadow-xs font-medium"
               >
                 <span>Qualify Discovered Tenders</span>
                 <ArrowRight className="h-3 w-3 ml-1" />
@@ -80,9 +80,9 @@ export function WinRateStatsCard({
           <>
             {/* Top Stat Highlights */}
             <div className="grid grid-cols-2 gap-2.5">
-              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0f1015] p-3">
+              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-3 shadow-2xs">
                 <div className="text-[11px] text-zinc-600 dark:text-zinc-300 flex items-center gap-1.5">
-                  <Trophy className="h-3.5 w-3.5 text-amber-500" /> Total Won Value
+                  <Trophy className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> Total Won Value
                 </div>
                 <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">
                   KES {stats.totalValueWon.toLocaleString()}
@@ -92,9 +92,9 @@ export function WinRateStatsCard({
                 </p>
               </div>
 
-              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0f1015] p-3">
+              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-3 shadow-2xs">
                 <div className="text-[11px] text-zinc-600 dark:text-zinc-300 flex items-center gap-1.5">
-                  <TrendingUp className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" /> Bid Win Rate
+                  <TrendingUp className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> Bid Win Rate
                 </div>
                 <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mt-1">
                   {stats.winRate}%
@@ -111,9 +111,9 @@ export function WinRateStatsCard({
                 <span className="text-zinc-600 dark:text-zinc-300">Award Ratio ({stats.awardedCount} won / {stats.totalSubmitted} submitted)</span>
                 <span className="font-semibold text-zinc-800 dark:text-zinc-200">{stats.winRate}%</span>
               </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
                 <div
-                  className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-500"
+                  className="h-full bg-purple-600 transition-all duration-500"
                   style={{ width: `${Math.min(100, Math.max(stats.winRate, 5))}%` }}
                 />
               </div>
@@ -121,25 +121,25 @@ export function WinRateStatsCard({
 
             {/* Stage breakdown chips */}
             <div className="grid grid-cols-3 gap-2 pt-1">
-              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0f1015] p-2 text-center">
+              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-2 text-center shadow-2xs">
                 <div className="text-[10px] text-zinc-500 dark:text-zinc-400 flex items-center justify-center gap-1">
-                  <SendHorizontal className="h-3 w-3 text-purple-500 dark:text-purple-400" /> Pursued
+                  <SendHorizontal className="h-3 w-3 text-purple-600 dark:text-purple-400" /> Pursued
                 </div>
                 <div className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mt-0.5">
                   {stats.totalApplications}
                 </div>
               </div>
 
-              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0f1015] p-2 text-center">
+              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-2 text-center shadow-2xs">
                 <div className="text-[10px] text-zinc-500 dark:text-zinc-400 flex items-center justify-center gap-1">
-                  <Clock className="h-3 w-3 text-blue-500 dark:text-blue-400" /> Evaluating
+                  <Clock className="h-3 w-3 text-zinc-500 dark:text-zinc-400" /> Evaluating
                 </div>
-                <div className="text-sm font-semibold text-blue-700 dark:text-blue-300 mt-0.5">
+                <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">
                   {stats.pendingDecisionCount}
                 </div>
               </div>
 
-              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0f1015] p-2 text-center">
+              <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-2 text-center shadow-2xs">
                 <div className="text-[10px] text-zinc-500 dark:text-zinc-400 flex items-center justify-center gap-1">
                   <CheckCircle2 className="h-3 w-3 text-emerald-600 dark:text-emerald-400" /> Won
                 </div>

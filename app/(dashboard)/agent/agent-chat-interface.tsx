@@ -268,14 +268,14 @@ export function AgentChatInterface({
   ];
 
   return (
-    <div className="flex h-[calc(100vh-8.5rem)] rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden shadow-2xl">
+    <div className="flex h-[calc(100vh-8.5rem)] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden shadow-xs">
       {/* Sidebar: Conversation History */}
-      <aside className="hidden md:flex w-72 flex-col border-r border-zinc-800 bg-zinc-900/60">
-        <div className="p-3 border-b border-zinc-800/80">
+      <aside className="hidden md:flex w-72 flex-col border-r border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
+        <div className="p-3 border-b border-zinc-200 dark:border-zinc-800">
           <Button
             size="sm"
             onClick={handleNewChat}
-            className="w-full bg-violet-600 hover:bg-violet-500 text-white text-xs h-9 justify-center gap-1.5 shadow-sm"
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs h-9 justify-center gap-1.5 shadow-xs font-medium"
           >
             <Plus className="h-4 w-4" /> New Conversation
           </Button>
@@ -301,12 +301,12 @@ export function AgentChatInterface({
                   className={cn(
                     'w-full flex items-center justify-between p-2.5 rounded-lg text-left text-xs transition-colors group',
                     isActive
-                      ? 'bg-zinc-800 text-zinc-100 font-medium'
-                      : 'text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200'
+                      ? 'bg-purple-50 text-purple-900 border border-purple-200 font-semibold dark:bg-purple-950/40 dark:text-purple-200 dark:border-purple-800'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-200'
                   )}
                 >
                   <span className="truncate pr-2">{conv.title || 'Untitled Session'}</span>
-                  <span className="text-[10px] text-zinc-500 shrink-0 font-mono">
+                  <span className="text-[10px] text-zinc-400 shrink-0 font-mono">
                     {new Date(conv.updated_at).toLocaleDateString(undefined, {
                       month: 'short',
                       day: 'numeric',
@@ -320,26 +320,26 @@ export function AgentChatInterface({
       </aside>
 
       {/* Main Chat Workspace */}
-      <main className="flex-1 flex flex-col bg-zinc-950/80">
+      <main className="flex-1 flex flex-col bg-white dark:bg-zinc-950">
         {/* Header Bar */}
-        <header className="flex h-14 items-center justify-between border-b border-zinc-800/80 px-6 bg-zinc-900/40">
+        <header className="flex h-14 items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-6 bg-white dark:bg-zinc-900">
           <div className="flex items-center space-x-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10 text-violet-400 border border-violet-500/30">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 text-purple-600 border border-purple-200 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-800">
               <Bot className="h-4 w-4" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-zinc-100">
+                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
                   {activeConversation?.title || 'TenderOS Autonomous Agent'}
                 </span>
                 <Badge
                   variant="outline"
-                  className="border-violet-500/30 text-violet-400 bg-violet-500/10 text-[9px] py-0"
+                  className="border-purple-200 text-purple-700 bg-purple-50 dark:border-purple-800 dark:text-purple-300 dark:bg-purple-950/40 text-[9px] py-0 font-medium"
                 >
                   Vertex AI (Gemini 2.5 Flash)
                 </Badge>
               </div>
-              <span className="text-[10px] text-zinc-400 block">
+              <span className="text-[10px] text-zinc-500 dark:text-zinc-400 block">
                 Autonomous tool use enabled across tender scraping, qualification, and bid proposals
               </span>
             </div>
@@ -348,9 +348,9 @@ export function AgentChatInterface({
           <div className="flex items-center space-x-2">
             <Button
               size="sm"
-              variant="ghost"
+              variant="outline"
               onClick={handleNewChat}
-              className="md:hidden h-8 text-xs text-zinc-300"
+              className="md:hidden h-8 text-xs text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-800"
             >
               <Plus className="h-4 w-4 mr-1" /> New
             </Button>
@@ -361,14 +361,14 @@ export function AgentChatInterface({
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4 max-w-lg mx-auto">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-500/30 text-violet-400 shadow-inner">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-50 border border-purple-200 text-purple-600 dark:bg-purple-950/40 dark:border-purple-800 dark:text-purple-400 shadow-xs">
                 <Sparkles className="h-7 w-7" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-base font-bold text-zinc-100">
+                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
                   TenderOS Autonomous Control Center
                 </h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   I can search tenders, qualify opportunities, draft proposals, regenerate sections, inspect compliance vaults, and assemble master bid submission packets.
                 </p>
               </div>
@@ -384,10 +384,10 @@ export function AgentChatInterface({
                       key={idx}
                       type="button"
                       onClick={() => handleSendMessage(s)}
-                      className="w-full text-left p-2.5 rounded-lg border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 hover:border-zinc-700 text-xs text-zinc-300 transition-colors flex items-center justify-between group"
+                      className="w-full text-left p-2.5 rounded-lg border border-zinc-200 bg-white hover:bg-zinc-50 hover:border-zinc-300 text-xs text-zinc-800 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-200 transition-colors flex items-center justify-between group shadow-xs font-normal"
                     >
                       <span>{s}</span>
-                      <ChevronRight className="h-3 w-3 text-zinc-500 group-hover:text-zinc-300 shrink-0 ml-2" />
+                      <ChevronRight className="h-3 w-3 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 shrink-0 ml-2" />
                     </button>
                   ))}
                 </div>
@@ -405,10 +405,10 @@ export function AgentChatInterface({
                 >
                   <div
                     className={cn(
-                      'max-w-3xl rounded-xl p-4 text-xs transition-all space-y-2',
+                      'max-w-3xl rounded-xl p-4 text-xs transition-all space-y-2 shadow-xs',
                       isUser
-                        ? 'bg-zinc-800 text-zinc-100 border border-zinc-700'
-                        : 'bg-zinc-900/80 text-zinc-200 border border-zinc-800/90 shadow-sm'
+                        ? 'bg-purple-600 text-white font-normal'
+                        : 'bg-zinc-50 text-zinc-900 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-100 dark:border-zinc-800'
                     )}
                   >
                     {/* Tool Call Activity Trace (Visible Thinking Accordion) */}
@@ -418,7 +418,12 @@ export function AgentChatInterface({
 
                     {/* Markdown Body */}
                     {msg.content ? (
-                      <div className="prose prose-invert prose-sm max-w-none prose-headings:text-zinc-100 prose-headings:font-bold prose-h1:text-base prose-h2:text-sm prose-h3:text-xs prose-p:text-xs prose-p:leading-relaxed prose-li:text-xs prose-table:text-xs prose-th:bg-zinc-950 prose-th:p-2 prose-td:p-2 prose-td:border-zinc-800">
+                      <div className={cn(
+                        'prose prose-sm max-w-none prose-headings:font-bold prose-h1:text-base prose-h2:text-sm prose-h3:text-xs prose-p:text-xs prose-p:leading-relaxed prose-li:text-xs prose-table:text-xs',
+                        isUser
+                          ? 'prose-invert text-white prose-p:text-white prose-headings:text-white'
+                          : 'prose-zinc dark:prose-invert'
+                      )}>
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {msg.content}
                         </ReactMarkdown>
@@ -427,16 +432,16 @@ export function AgentChatInterface({
 
                     {/* Message Footer / Copy */}
                     {!isUser && msg.content && (
-                      <div className="flex items-center justify-between pt-1 border-t border-zinc-200 dark:border-zinc-800/60 text-[10px] text-zinc-500">
+                      <div className="flex items-center justify-between pt-1 border-t border-zinc-200 dark:border-zinc-800 text-[10px] text-zinc-500">
                         <span>Google Vertex AI (Gemini 2.5 Flash)</span>
                         <button
                           type="button"
                           onClick={() => handleCopyMessage(msg.content, idx)}
-                          className="hover:text-zinc-300 flex items-center gap-1 transition-colors"
+                          className="hover:text-zinc-800 dark:hover:text-zinc-300 flex items-center gap-1 transition-colors font-medium"
                         >
                           {copiedIdx === idx ? (
                             <>
-                              <Check className="h-3 w-3 text-emerald-400" /> Copied
+                              <Check className="h-3 w-3 text-emerald-600 dark:text-emerald-400" /> Copied
                             </>
                           ) : (
                             <>
@@ -454,8 +459,8 @@ export function AgentChatInterface({
 
           {/* Live Tool Execution Status Indicator */}
           {currentToolStatus && (
-            <div className="flex items-center space-x-2 text-xs text-violet-400 bg-violet-950/30 border border-violet-500/30 px-3 py-2 rounded-lg max-w-md animate-pulse">
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            <div className="flex items-center space-x-2 text-xs text-purple-700 bg-purple-50 border border-purple-200 dark:text-purple-300 dark:bg-purple-950/40 dark:border-purple-800 px-3 py-2 rounded-lg max-w-md animate-pulse font-medium shadow-xs">
+              <Loader2 className="h-3.5 w-3.5 animate-spin text-purple-600 dark:text-purple-400" />
               <span>{currentToolStatus}</span>
             </div>
           )}
@@ -464,7 +469,7 @@ export function AgentChatInterface({
         </div>
 
         {/* Input Bar */}
-        <div className="p-4 border-t border-zinc-800/80 bg-zinc-900/40">
+        <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -485,14 +490,14 @@ export function AgentChatInterface({
                   }
                 }}
                 placeholder="Ask TenderOS... (e.g. 'Which tenders are closing this week?', 'Approve tender X and start the application', 'Draft financial proposal for application Y')"
-                className="w-full rounded-xl border border-zinc-800 bg-zinc-950 p-3 pr-10 text-xs text-zinc-100 placeholder-zinc-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 resize-none"
+                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-3 pr-10 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-purple-600 focus:outline-none focus:ring-1 focus:ring-purple-600 resize-none shadow-xs"
               />
             </div>
 
             <Button
               type="submit"
               disabled={isGenerating || !inputPrompt.trim()}
-              className="h-10 w-10 shrink-0 bg-violet-600 hover:bg-violet-500 text-white rounded-xl shadow-md"
+              className="h-10 w-10 shrink-0 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-xs"
             >
               {isGenerating ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -514,14 +519,14 @@ function ToolActivityAccordion({ toolCalls }: { toolCalls: ToolTraceItem[] }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="rounded-lg border border-violet-500/20 bg-zinc-950/70 p-2 text-xs space-y-1.5">
+    <div className="rounded-lg border border-purple-200 dark:border-purple-800 bg-purple-50/60 dark:bg-purple-950/20 p-2 text-xs space-y-1.5">
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between text-left text-[11px] font-medium text-violet-300 hover:text-violet-200"
+        className="w-full flex items-center justify-between text-left text-[11px] font-semibold text-purple-900 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200"
       >
         <span className="flex items-center gap-1.5">
-          <Terminal className="h-3.5 w-3.5 text-violet-400" />
+          <Terminal className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
           Tool Activity ({toolCalls.length} action{toolCalls.length > 1 ? 's' : ''} executed)
         </span>
         {isExpanded ? (
@@ -532,32 +537,32 @@ function ToolActivityAccordion({ toolCalls }: { toolCalls: ToolTraceItem[] }) {
       </button>
 
       {isExpanded && (
-        <div className="pt-1.5 space-y-2 border-t border-zinc-800/80">
+        <div className="pt-1.5 space-y-2 border-t border-purple-200 dark:border-purple-800/60">
           {toolCalls.map((tc, idx) => (
             <div
               key={idx}
-              className="rounded bg-zinc-900/80 border border-zinc-800 p-2 space-y-1 font-mono text-[10px]"
+              className="rounded bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-2 space-y-1 font-mono text-[10px]"
             >
-              <div className="flex items-center justify-between text-zinc-300">
-                <span className="text-violet-400 font-semibold">{tc.toolName}</span>
+              <div className="flex items-center justify-between text-zinc-800 dark:text-zinc-200">
+                <span className="text-purple-600 dark:text-purple-400 font-semibold">{tc.toolName}</span>
                 {tc.result ? (
-                  <span className="text-emerald-400 flex items-center gap-1">
+                  <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-medium">
                     <CheckCircle2 className="h-3 w-3" /> success
                   </span>
                 ) : (
-                  <span className="text-amber-400">executing...</span>
+                  <span className="text-amber-600 dark:text-amber-400">executing...</span>
                 )}
               </div>
 
               {tc.input && Object.keys(tc.input).length > 0 && (
-                <div className="text-zinc-500">
-                  <span className="text-zinc-400">Input: </span>
+                <div className="text-zinc-600 dark:text-zinc-400">
+                  <span className="text-zinc-500">Input: </span>
                   {JSON.stringify(tc.input)}
                 </div>
               )}
 
               {tc.result && (
-                <div className="text-zinc-400 overflow-x-auto max-h-24">
+                <div className="text-zinc-700 dark:text-zinc-300 overflow-x-auto max-h-24">
                   <span className="text-zinc-500">Output: </span>
                   {typeof tc.result === 'object'
                     ? JSON.stringify(tc.result, null, 1)

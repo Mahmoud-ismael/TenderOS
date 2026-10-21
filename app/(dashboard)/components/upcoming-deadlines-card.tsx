@@ -24,11 +24,11 @@ export function UpcomingDeadlinesCard({
   items: UpcomingDeadlinesItem[];
 }) {
   return (
-    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14151b] shadow-sm flex flex-col justify-between">
-      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800/80">
+    <Card className="border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs flex flex-col justify-between">
+      <CardHeader className="p-4 pb-3 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-500/30">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/40">
               <Clock className="h-4 w-4" />
             </div>
             <div>
@@ -66,19 +66,22 @@ export function UpcomingDeadlinesCard({
                 <div
                   key={item.id}
                   className={cn(
-                    'p-3 rounded-lg border text-xs transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3',
+                    'p-3 rounded-lg border text-xs transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-2xs',
                     isCritical
-                      ? 'border-red-300 dark:border-red-500/40 bg-red-50/70 dark:bg-red-950/20'
+                      ? 'border-red-300 dark:border-red-900/50 bg-red-50/70 dark:bg-red-950/20'
                       : isCaution
-                      ? 'border-amber-300 dark:border-amber-500/40 bg-amber-50/70 dark:bg-amber-950/20'
-                      : 'border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-[#0f1015] hover:border-zinc-300 dark:hover:border-zinc-700'
+                      ? 'border-purple-200 dark:border-purple-900/40 bg-purple-50/50 dark:bg-purple-950/20'
+                      : 'border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:border-zinc-300 dark:hover:border-zinc-700'
                   )}
                 >
                   <div className="space-y-1 min-w-0 pr-2">
                     <div className="flex items-center gap-2 flex-wrap">
                       <Badge
-                        variant={isCritical ? 'destructive' : isCaution ? 'warning' : 'outline'}
-                        className="text-[9px] uppercase font-bold py-0"
+                        variant={isCritical ? 'destructive' : isCaution ? 'secondary' : 'outline'}
+                        className={cn(
+                          'text-[9px] uppercase font-bold py-0',
+                          isCaution && 'border-purple-300 text-purple-700 bg-purple-100 dark:border-purple-800 dark:text-purple-300 dark:bg-purple-950/40'
+                        )}
                       >
                         {item.daysRemaining === 0
                           ? 'Closes Today'
@@ -92,7 +95,7 @@ export function UpcomingDeadlinesCard({
                       </span>
 
                       {item.estimated_value && (
-                        <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                        <span className="text-[10px] font-medium text-purple-700 dark:text-purple-400">
                           KES {item.estimated_value.toLocaleString()}
                         </span>
                       )}
@@ -117,7 +120,7 @@ export function UpcomingDeadlinesCard({
                       <div className="pt-1 flex items-center gap-2 max-w-xs">
                         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
                           <div
-                            className="h-full bg-emerald-500"
+                            className="h-full bg-purple-600"
                             style={{ width: `${item.checklistProgress.pct}%` }}
                           />
                         </div>
@@ -132,14 +135,14 @@ export function UpcomingDeadlinesCard({
                     {item.applicationId ? (
                       <Link
                         href={`/applications/${item.applicationId}`}
-                        className="inline-flex items-center rounded-md bg-cyan-600 hover:bg-cyan-500 px-3 py-1.5 text-xs font-medium text-white transition-colors shadow-sm"
+                        className="inline-flex items-center rounded-md bg-purple-600 hover:bg-purple-700 px-3 py-1.5 text-xs font-medium text-white transition-colors shadow-xs"
                       >
                         <FileCheck2 className="h-3 w-3 mr-1.5" /> Submit Dossier
                       </Link>
                     ) : (
                       <Link
                         href={`/qualification?tenderId=${item.id}`}
-                        className="inline-flex items-center rounded-md bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 px-3 py-1.5 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors shadow-sm"
+                        className="inline-flex items-center rounded-md bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 px-3 py-1.5 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors shadow-xs"
                       >
                         Qualify <ArrowRight className="h-3 w-3 ml-1" />
                       </Link>
