@@ -86,9 +86,10 @@ export async function runDeadlineAndComplianceScan(): Promise<DeadlineCheckSumma
           await sendEmailNotification({
             subject: `[CRITICAL URGENCY] Bid Checklist Incomplete: ${tender.external_reference || 'Tender'} (${diffDays} Days Left)`,
             headline: `Action Required: Incomplete Bid Dossier for ${tender.procuring_entity}`,
-            body: `Tender "${tender.title}" has ${diffDays} day(s) remaining before the submission deadline (${deadline.toLocaleString()}). ${pendingItems.length} item(s) are unverified. Late submissions are strictly disqualified under PPADA 2015 § 77(1).`,
-            actionText: 'Complete Application Dossier',
+            body: `Tender "${tender.title}" has ${diffDays} day(s) remaining before the submission deadline (${deadline.toLocaleString()}). ${pendingItems.length} item(s) are unverified. Check the official portal link below for any published addendums or date extensions.`,
+            actionText: 'Complete Application Dossier in TenderOS',
             actionUrl: `/applications/${app.id}`,
+            tenderUrl: tender.tender_document_url || 'https://tenders.go.ke',
             severity: 'critical',
           });
         }
@@ -109,9 +110,10 @@ export async function runDeadlineAndComplianceScan(): Promise<DeadlineCheckSumma
           await sendEmailNotification({
             subject: `[Tender Deadline] ${diffDays} Day(s) Remaining: ${tender.external_reference || 'Tender'}`,
             headline: `Submission Window Closing: ${tender.title}`,
-            body: `The deadline for ${tender.procuring_entity} is approaching on ${deadline.toLocaleString()}. Verify all compliance documents and assemble your bid packet.`,
-            actionText: 'Review Application',
+            body: `The deadline for ${tender.procuring_entity} is approaching on ${deadline.toLocaleString()}. Verify all compliance documents, inspect addendums on the official portal, and assemble your bid packet.`,
+            actionText: 'Review Application in TenderOS',
             actionUrl: `/applications/${app.id}`,
+            tenderUrl: tender.tender_document_url || 'https://tenders.go.ke',
             severity,
           });
         }

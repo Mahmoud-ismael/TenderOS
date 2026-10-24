@@ -40,7 +40,7 @@ export const tenderDiscoveryWorker = inngest.createFunction(
       // Query latest un-qualified discovered tenders
       const { data: newTenders, error } = await supabase
         .from('tenders')
-        .select('id, title, external_reference, procuring_entity, estimated_value, submission_deadline')
+        .select('id, title, external_reference, procuring_entity, estimated_value, submission_deadline, tender_document_url')
         .eq('status', 'discovered')
         .order('publish_date', { ascending: false })
         .limit(15);
@@ -87,9 +87,10 @@ export const tenderDiscoveryWorker = inngest.createFunction(
               await sendEmailNotification({
                 subject: `[New Qualified Tender] ${isPursue ? 'PURSUIT RECOMMENDED' : 'BORDERLINE'}: ${tender.title.substring(0, 50)}`,
                 headline: `New Qualified Bid Match: ${tender.title}`,
-                body: `A new tender discovered by Hisako TenderOS scored ${qual.score}/100 in AI Qualification. Recommendation: ${qual.recommendation.toUpperCase()}. Procuring Entity: ${tender.procuring_entity}. Deadline: ${tender.submission_deadline ? new Date(tender.submission_deadline).toLocaleDateString() : 'N/A'}.`,
-                actionText: 'Review & Approve Bid',
+                body: `A new tender discovered by Hisako TenderOS scored ${qual.score}/100 in AI Qualification. Recommendation: ${qual.recommendation.toUpperCase()}. Procuring Entity: ${tender.procuring_entity}. Deadline: ${tender.submission_deadline ? new Date(tender.submission_deadline).toLocaleDateString() : 'N/A'}. Check official portal for addendums and pre-bid clarifications.`,
+                actionText: 'Review & Approve Bid in TenderOS',
                 actionUrl: `/qualification?tenderId=${tender.id}`,
+                tenderUrl: tender.tender_document_url || 'https://tenders.go.ke',
                 severity: isPursue ? 'success' : 'warning',
               });
             }

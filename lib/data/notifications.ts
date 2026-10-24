@@ -31,18 +31,24 @@ export async function getSystemSettings(): Promise<SystemSettingsRow> {
     .eq('id', 1)
     .maybeSingle();
 
-  if (data) return data;
+  if (data) {
+    // If notification_email is the old placeholder, override with ismail@hisako.eu
+    if (data.notification_email === 'tenders@hisako.co.ke') {
+      data.notification_email = process.env.NOTIFICATION_EMAIL || 'ismail@hisako.eu';
+    }
+    return data;
+  }
 
   const defaultSettings: SystemSettingsRow = {
     id: 1,
     email_notifications_enabled: true,
     in_app_notifications_enabled: true,
-    notification_email: 'tenders@hisako.co.ke',
+    notification_email: process.env.NOTIFICATION_EMAIL || 'ismail@hisako.eu',
     deadline_thresholds_days: [7, 3, 1],
     compliance_thresholds_days: [60, 30, 14, 7],
     auto_qualify_discovered: true,
     min_score_to_notify: 50,
-    resend_api_key: null,
+    resend_api_key: process.env.RESEND_API_KEY || null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   };
